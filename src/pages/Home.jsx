@@ -23,6 +23,37 @@ const Home = () => {
               className="threejsLogo"
             />
           </motion.header>
+
+          <motion.div
+            className="HomePageContentContainer"
+            {...headContainerAnimation}
+          >
+            <motion.div {...headTextAnimation}>
+              <h1 className="headText">Start Creating Your Dream Shirt!</h1>
+            </motion.div>
+
+            <motion.div
+              className="descriptionContainer"
+              {...headContentAnimation}
+            >
+              <p className="description">
+                <strong>Unleash your Inner Fashion Designer</strong> and
+                transform the style of a 3D virtual shirt with endless
+                combinations. Get ready to experience fashion in a whole new
+                dimension. Are you ready to make a statement with{" "}
+                <strong>YOUR Style?</strong>
+              </p>
+
+              <button
+                className="designButton"
+                onClick={() =>
+                  pageContext.setIntroFunc((prev) => (prev = false))
+                }
+              >
+                Create My Shirt
+              </button>
+            </motion.div>
+          </motion.div>
         </motion.section>
       )}
     </AnimatePresence>
