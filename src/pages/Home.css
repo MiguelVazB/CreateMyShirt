@@ -1,0 +1,24 @@
+.home{
+    padding: 1rem;
+}
+
+.threejsLogo{
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+}
+
+.designButton{
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: clamp(0.5rem, 1rem, 3rem);
+    cursor: pointer;
+    box-shadow: 1px 1px 3px black;
+    background-color: chocolate;
+    color: black;
+}
+
+.description{
+    color: rgb(33, 33, 33);
+}
