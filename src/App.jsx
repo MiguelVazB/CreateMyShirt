@@ -7,9 +7,8 @@ import { PageContext } from "./context/PageContext";
 function App() {
   const [intro, setIntro] = useState(true);
   return (
-    <PageContext.Provider value={{ intro: intro }}>
+    <PageContext.Provider value={{ intro: intro, setIntroFunc: setIntro }}>
       <main>
-        <h1>Create My Shirt</h1>
         <Home />
         <Canvas />
         <Customizer />
