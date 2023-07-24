@@ -5,9 +5,9 @@ import Home from "./pages/Home";
 import { PageContext } from "./context/PageContext";
 
 function App() {
-  const [hello, setHello] = useState("hello");
+  const [intro, setIntro] = useState(true);
   return (
-    <PageContext.Provider value={{ hello, setHello }}>
+    <PageContext.Provider value={{ intro: intro }}>
       <main>
         <h1>Create My Shirt</h1>
         <Home />
