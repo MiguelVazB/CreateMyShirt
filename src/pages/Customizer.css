@@ -1,0 +1,53 @@
+.custom-tab{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 3em;
+    width: clamp(5em, 8em, 10em);
+    /* background-color: red; */
+}
+
+.custom-tab div{
+    cursor: pointer;
+}
+
+.custom-tab div:hover{
+    scale: 1.1;
+}
+
+.goBackButton{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: 0;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    background-color: chocolate;
+    color: black;
+    font-size: clamp(0.5rem, 1rem, 3rem);
+    cursor: pointer;
+    box-shadow: 1px 1px 3px black;
+    border-radius: 10px;
+}
+
+.customToggles{
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+    column-gap: 2rem;
+    display: flex;
+    cursor: pointer;
+    /* background-color: red; */
+}
+
+.customToggles div:hover{
+    scale: 1.1;
+}
