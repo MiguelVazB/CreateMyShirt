@@ -17,11 +17,11 @@ const Customizer = () => {
     <AnimatePresence>
       {!pageContext.intro && (
         <>
-          <motion.div key="customize" {...slideAnimation("left")}>
+          <motion.div className="customMenu" {...slideAnimation("left")}>
             <div className="custom-tab">
-              <div>Color Changer</div>
-              <div>Logo Changer</div>
-              <div>AI Helper</div>
+              <div>Color</div>
+              <div>Logo</div>
+              <div>AI</div>
             </div>
           </motion.div>
 
@@ -34,7 +34,10 @@ const Customizer = () => {
             </button>
           </motion.div>
 
-          <motion.div {...slideAnimation("up")}>
+          <motion.div
+            className="customTogglesContainer"
+            {...slideAnimation("up")}
+          >
             <div className="customToggles">
               <div>Color Changer</div>
               <div>Logo Changer</div>
