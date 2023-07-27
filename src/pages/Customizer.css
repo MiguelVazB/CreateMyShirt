@@ -1,3 +1,10 @@
+.customMenu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+
 .custom-tab{
     position: absolute;
     left: 0;
@@ -33,6 +40,13 @@
     cursor: pointer;
     box-shadow: 1px 1px 3px black;
     border-radius: 10px;
+}
+
+.customTogglesContainer{
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
 }
 
 .customToggles{
