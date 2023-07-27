@@ -1,23 +1,24 @@
 .home{
-    padding: 1rem;
+    padding: 2rem;
+    position: absolute
 }
 
 .threejsLogo{
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
     object-fit: contain;
 }
 
 .headText{
     margin: 0;
-    font-size: 6rem;
+    font-size: clamp(1.5rem, 3rem, 4rem);
 }
 
 .createButton{
     padding: 1rem 2rem;
     font-weight: bold;
     border-radius: 10px;
-    font-size: clamp(0.5rem, 1.5rem, 3rem);
+    font-size: clamp(0.5rem, 1rem, 2rem);
     cursor: pointer;
     box-shadow: 1px 1px 3px black;
     background-color: chocolate;
@@ -26,5 +27,5 @@
 
 .description{
     color: rgb(33, 33, 33);
-    font-size: xx-large;
+    font-size: clamp(1rem, 1.5rem, 2rem);
 }
