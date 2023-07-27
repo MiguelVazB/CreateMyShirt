@@ -6,8 +6,21 @@ import { PageContext } from "./context/PageContext";
 
 function App() {
   const [intro, setIntro] = useState(true);
+  const [isFullTexture, setIsFullTexture] = useState(false);
+  const [isLogoTexture, setIsLogoTexture] = useState(true);
+
   return (
-    <PageContext.Provider value={{ intro: intro, setIntroFunc: setIntro }}>
+    <PageContext.Provider
+      value={{
+        intro: intro,
+        setIntroFunc: setIntro,
+        isFullTexture: isFullTexture,
+        setIsFullTexture: setIsFullTexture,
+        isLogoTexture: isLogoTexture,
+        setIsLogoTexture,
+        setIsLogoTexture,
+      }}
+    >
       <main>
         <Home />
         <Customizer />
