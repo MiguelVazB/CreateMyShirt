@@ -8,6 +8,29 @@ const CameraRig = ({ children }) => {
 
   const groupRef = useRef(null);
 
+  // model rotation
+  useFrame((state, delta) => {
+    const resizeShirtLaptop = window.innerWidth <= 1260;
+    const resizeShirtMobile = window.innerWidth <= 600;
+
+    // position of shirt
+    let shirtPosition = [-0.4, 0, 2];
+    if (pageContext.intro) {
+      if (resizeShirtLaptop) shirtPosition = [0, 0.3, 1.2];
+      if (resizeShirtMobile) shirtPosition = [0, 0.2, 2.5];
+    } else {
+      if (resizeShirtMobile) shirtPosition = [0, 0, 2.5];
+      else shirtPosition = [0, 0, 2];
+    }
+
+    easing.damp3(state.camera.position, shirtPosition, 0.25, delta);
+
+    easing.damp(groupRef.current.rotation),
+      [state.pointer.y / 10, -state.pointer.x / 5, 0],
+      0.25,
+      delta;
+  });
+
   return <group ref={groupRef}>{children}</group>;
 };
 
