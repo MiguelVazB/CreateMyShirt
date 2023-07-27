@@ -40,10 +40,10 @@ const Home = () => {
             >
               <p className="description">
                 <strong>Unleash your Inner Fashion Designer</strong> and
-                transform the style of a 3D virtual shirt with endless
-                combinations. Get ready to experience fashion in a whole new
-                dimension. Are you ready to make a statement with{" "}
-                <strong>YOUR</strong> Style?
+                transform the style of your 3D shirt with our customization
+                tool. Get ready to experience fashion in a whole new dimension.
+                Are you ready to make a statement with <strong>YOUR</strong>{" "}
+                Style?
               </p>
 
               <button
