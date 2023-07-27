@@ -8,11 +8,16 @@
     object-fit: contain;
 }
 
-.designButton{
-    padding: 10px 15px;
+.headText{
+    margin: 0;
+    font-size: 6rem;
+}
+
+.createButton{
+    padding: 1rem 2rem;
     font-weight: bold;
     border-radius: 10px;
-    font-size: clamp(0.5rem, 1rem, 3rem);
+    font-size: clamp(0.5rem, 1.5rem, 3rem);
     cursor: pointer;
     box-shadow: 1px 1px 3px black;
     background-color: chocolate;
@@ -21,4 +26,5 @@
 
 .description{
     color: rgb(33, 33, 33);
+    font-size: xx-large;
 }
