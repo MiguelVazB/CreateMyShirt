@@ -3,3 +3,8 @@
 *{
     font-family: 'Inter', sans-serif;
 }
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
