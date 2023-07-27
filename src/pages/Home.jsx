@@ -28,8 +28,10 @@ const Home = () => {
             className="HomePageContentContainer"
             {...headContainerAnimation}
           >
-            <motion.div {...headTextAnimation}>
-              <h1 className="headText">Start Creating Your Dream Shirt!</h1>
+            <motion.div className="headTextContainer" {...headTextAnimation}>
+              <h1 className="headText">
+                Start Creating <br /> Your Dream Shirt!
+              </h1>
             </motion.div>
 
             <motion.div
@@ -41,11 +43,11 @@ const Home = () => {
                 transform the style of a 3D virtual shirt with endless
                 combinations. Get ready to experience fashion in a whole new
                 dimension. Are you ready to make a statement with{" "}
-                <strong>YOUR Style?</strong>
+                <strong>YOUR</strong> Style?
               </p>
 
               <button
-                className="designButton"
+                className="createButton"
                 onClick={() =>
                   pageContext.setIntroFunc((prev) => (prev = false))
                 }
