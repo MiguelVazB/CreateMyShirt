@@ -10,8 +10,8 @@ function App() {
     <PageContext.Provider value={{ intro: intro, setIntroFunc: setIntro }}>
       <main>
         <Home />
-        <Canvas />
         <Customizer />
+        <Canvas />
       </main>
     </PageContext.Provider>
   );
