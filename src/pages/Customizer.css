@@ -59,6 +59,7 @@
 }
 
 .customToggles{
+    display: flex;
     position: absolute;
     bottom: 2rem;
     left: 0;
@@ -66,9 +67,7 @@
     align-items: center;
     justify-content: center;
     column-gap: 2rem;
-    display: flex;
     cursor: pointer;
-    /* background-color: red; */
 }
 
 .customToggles div:hover{
