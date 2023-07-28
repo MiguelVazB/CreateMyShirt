@@ -1,6 +1,7 @@
 .home{
     padding: 2rem;
-    position: absolute
+    position: absolute;
+    z-index: 1;
 }
 
 .threejsLogo{
@@ -15,10 +16,10 @@
 }
 
 .createButton{
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;
     font-weight: bold;
     border-radius: 10px;
-    font-size: clamp(0.5rem, 1rem, 2rem);
+    font-size: clamp(0.5rem, 1.5rem, 2rem);
     cursor: pointer;
     box-shadow: 1px 1px 3px black;
     background-color: chocolate;
