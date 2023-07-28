@@ -15,8 +15,10 @@ const Shirt = () => {
     easing.dampC(materials.lambert1.color, pageContext.shirtColor, 0.25, delta)
   );
 
+  const groupState = JSON.stringify(pageContext);
+
   return (
-    <group>
+    <group key={groupState}>
       <mesh
         castShadow
         geometry={nodes.T_Shirt_male.geometry}
