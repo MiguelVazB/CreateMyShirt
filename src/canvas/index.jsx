@@ -8,12 +8,17 @@ import "./Canvas.css";
 
 const MainCanvas = () => {
   return (
-    <Canvas className="mainCanvas">
+    <Canvas
+      className="mainCanvas"
+      shadows
+      camera={{ position: [0, 0, 0], fov: 30 }}
+      gl={{ preserveDrawingBuffer: true, useLegacyLights: false }}
+    >
       <ambientLight intensity={0.5} />
       <Environment preset="city" />
 
       <CameraRig>
-        {/* <Background /> */}
+        <Background />
         <Center>
           <Shirt />
         </Center>
