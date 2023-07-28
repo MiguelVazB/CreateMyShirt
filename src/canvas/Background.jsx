@@ -18,11 +18,11 @@ const Background = () => {
     >
       <RandomizedLight
         amount={4}
-        radius={8}
+        radius={9}
         intensity={0.9}
-        ambient={0.35}
-        position={[5, 5, -10]}
-      ></RandomizedLight>
+        ambient={0.25}
+        position={[5, 10, -10]}
+      />
     </AccumulativeShadows>
   );
 };
