@@ -8,6 +8,7 @@ function App() {
   const [intro, setIntro] = useState(true);
   const [isFullTexture, setIsFullTexture] = useState(false);
   const [isLogoTexture, setIsLogoTexture] = useState(true);
+  const [shirtColor, setShirtColor] = useState("chocolate");
 
   return (
     <PageContext.Provider
@@ -17,8 +18,9 @@ function App() {
         isFullTexture: isFullTexture,
         setIsFullTexture: setIsFullTexture,
         isLogoTexture: isLogoTexture,
-        setIsLogoTexture,
-        setIsLogoTexture,
+        setIsLogoTexture: setIsLogoTexture,
+        shirtColor: shirtColor,
+        setShirtColor: setShirtColor,
       }}
     >
       <main>
