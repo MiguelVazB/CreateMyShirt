@@ -11,6 +11,10 @@ const Shirt = () => {
   const logoTexture = useTexture("./threejsLogo.png");
   const fullTexture = useTexture("./threejsLogo.png");
 
+  useFrame((state, delta) =>
+    easing.dampC(materials.lambert1.color, pageContext.shirtColor, 0.25, delta)
+  );
+
   return (
     <group>
       <mesh
