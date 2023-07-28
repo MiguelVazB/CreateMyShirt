@@ -3,13 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { PageContext } from "../context/PageContext";
 import "./Customizer.css";
 
-import {
-  fadeAnimation,
-  headContainerAnimation,
-  headContentAnimation,
-  headTextAnimation,
-  slideAnimation,
-} from "../utils/animations";
+import { fadeAnimation, slideAnimation } from "../utils/animations";
 
 const Customizer = () => {
   const pageContext = useContext(PageContext);
@@ -40,7 +34,11 @@ const Customizer = () => {
           >
             <div className="customToggles">
               <div>Color Changer</div>
-              <div>Logo Changer</div>
+              <div
+                onClick={() => pageContext.setIsLogoTexture((prev) => !prev)}
+              >
+                Logo Changer
+              </div>
               <div>AI Helper</div>
             </div>
           </motion.div>
