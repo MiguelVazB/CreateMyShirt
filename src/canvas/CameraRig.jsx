@@ -13,13 +13,13 @@ const CameraRig = ({ children }) => {
     const resizeShirtMobile = window.innerWidth <= 600;
 
     // position of shirt
-    let shirtPosition = [-0.4, 0, 2];
+    let shirtPosition = [0, 0, 2];
     if (pageContext.intro) {
-      if (resizeShirtLaptop) shirtPosition = [0, 0, 2];
+      if (resizeShirtLaptop) shirtPosition = [0, 0.15, 2];
       if (resizeShirtMobile) shirtPosition = [0, 0.2, 2.5];
     } else {
       if (resizeShirtMobile) shirtPosition = [0, 0, 2.5];
-      else shirtPosition = [0, 0, 2];
+      else shirtPosition = [0, -0.05, 2];
     }
 
     easing.damp3(state.camera.position, shirtPosition, 0.25, delta);
