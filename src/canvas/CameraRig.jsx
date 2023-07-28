@@ -6,9 +6,8 @@ import { PageContext } from "../context/PageContext";
 const CameraRig = ({ children }) => {
   const pageContext = useContext(PageContext);
 
-  const groupRef = useRef(null);
+  const groupRef = useRef();
 
-  // model rotation
   useFrame((state, delta) => {
     const resizeShirtLaptop = window.innerWidth <= 1260;
     const resizeShirtMobile = window.innerWidth <= 600;
@@ -16,7 +15,7 @@ const CameraRig = ({ children }) => {
     // position of shirt
     let shirtPosition = [-0.4, 0, 2];
     if (pageContext.intro) {
-      if (resizeShirtLaptop) shirtPosition = [0, 0.3, 1.2];
+      if (resizeShirtLaptop) shirtPosition = [0, 0, 2];
       if (resizeShirtMobile) shirtPosition = [0, 0.2, 2.5];
     } else {
       if (resizeShirtMobile) shirtPosition = [0, 0, 2.5];
@@ -25,10 +24,13 @@ const CameraRig = ({ children }) => {
 
     easing.damp3(state.camera.position, shirtPosition, 0.25, delta);
 
-    easing.damp(groupRef.current.rotation),
+    // model rotation
+    easing.dampE(
+      groupRef.current.rotation,
       [state.pointer.y / 10, -state.pointer.x / 5, 0],
       0.25,
-      delta;
+      delta
+    );
   });
 
   return <group ref={groupRef}>{children}</group>;
