@@ -32,7 +32,8 @@ const Customizer = () => {
             className="customTogglesContainer"
             {...slideAnimation("up")}
           >
-            <div className="customToggles">
+            <div id="toggles" className="customToggles">
+              <label htmlFor="toggles">Toggles:</label>
               <div>Color Changer</div>
               <div
                 onClick={() => pageContext.setIsLogoTexture((prev) => !prev)}
