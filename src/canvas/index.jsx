@@ -12,7 +12,10 @@ const MainCanvas = () => {
       className="mainCanvas"
       shadows
       camera={{ position: [0, 0, 0], fov: 30 }}
-      gl={{ preserveDrawingBuffer: true, useLegacyLights: false }}
+      gl={{
+        preserveDrawingBuffer: true,
+        useLegacyLights: false,
+      }}
     >
       <ambientLight intensity={0.5} />
       <Environment preset="city" />
@@ -20,7 +23,7 @@ const MainCanvas = () => {
       <CameraRig>
         <Background />
         <Center>
-          <Shirt />
+          <Shirt className="shirt" />
         </Center>
       </CameraRig>
     </Canvas>
