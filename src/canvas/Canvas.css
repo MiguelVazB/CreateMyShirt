@@ -1,3 +1,7 @@
 .mainCanvas{
     z-index: 0;
 }
+
+.shirt{
+    transition: all ease-in;
+}
