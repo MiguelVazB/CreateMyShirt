@@ -13,7 +13,7 @@ const CameraRig = ({ children }) => {
     const resizeShirtMobile = window.innerWidth <= 600;
 
     // position of shirt
-    let shirtPosition = [0, 0, 2];
+    let shirtPosition = [-0.35, 0, 1.5];
     if (pageContext.intro) {
       if (resizeShirtLaptop) shirtPosition = [0, 0.15, 2];
       if (resizeShirtMobile) shirtPosition = [0, 0.2, 2.5];
