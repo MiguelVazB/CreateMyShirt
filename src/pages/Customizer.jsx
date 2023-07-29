@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PageContext } from "../context/PageContext";
+import CustomizationMenu from "../components/CustomizationMenu";
 import "./Customizer.css";
 
 import { fadeAnimation, slideAnimation } from "../utils/animations";
@@ -12,11 +13,7 @@ const Customizer = () => {
       {!pageContext.intro && (
         <>
           <motion.div className="customMenu" {...slideAnimation("left")}>
-            <div className="custom-tab">
-              <div>Color</div>
-              <div>Logo</div>
-              <div>AI</div>
-            </div>
+            <CustomizationMenu />
           </motion.div>
 
           <motion.div {...fadeAnimation}>
@@ -32,14 +29,13 @@ const Customizer = () => {
             className="customTogglesContainer"
             {...slideAnimation("up")}
           >
-            <div id="toggles" className="customToggles">
-              <label htmlFor="toggles">Toggles:</label>
-              <div>Color Changer</div>
-              <div
+            <div className="customToggles">
+              <img src="./toggleColor.png" alt="toggle Color" />
+              <img
+                src="./toggleLogo.png"
+                alt="toggle Logo"
                 onClick={() => pageContext.setIsLogoTexture((prev) => !prev)}
-              >
-                Logo Changer
-              </div>
+              />
               <div>AI Helper</div>
             </div>
           </motion.div>
