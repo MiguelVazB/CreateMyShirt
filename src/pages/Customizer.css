@@ -5,8 +5,8 @@
     bottom: 0;
     z-index: 1;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
+    column-gap: 1rem;
     width: 10%;
     transition: width 0.15s ease-in-out;
 }
