@@ -13,6 +13,7 @@ const ColorChanger = () => {
     <div className="colorPickerContainer">
       <SketchPicker
         color={pageContext.shirtColor}
+        disableAlpha
         onChange={handleChangeComplete}
       />
     </div>
