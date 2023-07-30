@@ -12,7 +12,10 @@ const Customizer = () => {
     <AnimatePresence>
       {!pageContext.intro && (
         <>
-          <motion.div className="customMenu" {...slideAnimation("left")}>
+          <motion.div
+            style={{ position: "absolute", top: 0, left: 0, bottom: 0 }}
+            {...slideAnimation("left")}
+          >
             <CustomizationMenu />
           </motion.div>
 
