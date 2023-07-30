@@ -1,8 +1,22 @@
-import React from "react";
-import { CirclePicker } from "react-color";
+import React, { useContext } from "react";
+import { SketchPicker } from "react-color";
+import { PageContext } from "../context/PageContext";
 
 const ColorChanger = () => {
-  return <>ColorChanger</>;
+  const pageContext = useContext(PageContext);
+
+  const handleChangeComplete = (color, event) => {
+    pageContext.setShirtColor(color.hex);
+  };
+
+  return (
+    <div className="colorPickerContainer">
+      <SketchPicker
+        color={pageContext.shirtColor}
+        onChange={handleChangeComplete}
+      />
+    </div>
+  );
 };
 
 export default ColorChanger;
