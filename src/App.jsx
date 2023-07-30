@@ -25,8 +25,8 @@ function App() {
     >
       <main>
         <Home />
-        <Customizer />
         <Canvas />
+        <Customizer />
       </main>
     </PageContext.Provider>
   );
