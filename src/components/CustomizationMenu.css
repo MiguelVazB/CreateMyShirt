@@ -5,7 +5,7 @@
     justify-content: space-evenly;
     width: clamp(5em, 8em, 10em);
     background-color: rgba(255,255,255,0.2);
-    border-radius: 10%;
+    border-radius: 10px;
     padding: 0.5rem;
     transition: padding 0.2s ease-in-out;
 }
@@ -32,4 +32,12 @@
 .colorPickerContainer{
     height: fit-content;
     width: auto;
+    display: flex;
+}
+
+.colorPickerContainer .sketch-picker{
+    background-color: rgba(255,255,255,0.2) !important;
+    border-radius: 10px !important;
+    border: 0 !important;
+    box-shadow: none !important;
 }
