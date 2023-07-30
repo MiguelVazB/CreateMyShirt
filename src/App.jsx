@@ -9,6 +9,7 @@ function App() {
   const [isFullTexture, setIsFullTexture] = useState(false);
   const [isLogoTexture, setIsLogoTexture] = useState(true);
   const [shirtColor, setShirtColor] = useState("chocolate");
+  const [logoTexture, setLogoTexture] = useState("./threejsLogo.png");
 
   return (
     <PageContext.Provider
@@ -21,6 +22,8 @@ function App() {
         setIsLogoTexture: setIsLogoTexture,
         shirtColor: shirtColor,
         setShirtColor: setShirtColor,
+        logoTexture: logoTexture,
+        setLogoTexture: setLogoTexture,
       }}
     >
       <main>
