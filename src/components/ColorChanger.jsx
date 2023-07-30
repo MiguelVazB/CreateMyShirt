@@ -1,7 +1,8 @@
 import React from "react";
+import { CirclePicker } from "react-color";
 
 const ColorChanger = () => {
-  return <div>ColorChanger</div>;
+  return <>ColorChanger</>;
 };
 
 export default ColorChanger;
