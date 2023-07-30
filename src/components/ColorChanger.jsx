@@ -5,7 +5,7 @@ import { PageContext } from "../context/PageContext";
 const ColorChanger = () => {
   const pageContext = useContext(PageContext);
 
-  const handleChangeComplete = (color, event) => {
+  const handleChangeComplete = (color) => {
     pageContext.setShirtColor(color.hex);
   };
 
