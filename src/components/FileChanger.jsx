@@ -15,17 +15,24 @@ const FileChanger = () => {
   };
 
   return (
-    <div>
-      <input
-        type="file"
-        style={{ display: "none" }}
-        onChange={handleFileSelect}
-      />
-      <button
-        onClick={() => document.querySelector('input[type="file"]').click()}
-      >
-        Click to upload file
-      </button>
+    <div className="fileUploadContainer">
+      <div className="fileContainer">
+        <input
+          type="file"
+          style={{ display: "none" }}
+          onChange={handleFileSelect}
+        />
+        <button
+          onClick={() => document.querySelector('input[type="file"]').click()}
+        >
+          Click to upload file
+        </button>
+        <p>No file selected</p>
+      </div>
+      <div className="textureType">
+        <button>Logo</button>
+        <button>Full</button>
+      </div>
     </div>
   );
 };
