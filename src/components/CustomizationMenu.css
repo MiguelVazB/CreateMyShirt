@@ -73,7 +73,7 @@
     justify-content: space-between;
 }
 
-.fileUploadContainer button{
+.uploadBtn{
     width: max-content;
     padding: 0.5rem 0.8rem;
     border-radius: 10px;
@@ -98,9 +98,16 @@
     justify-content: space-around;
 }
 
-.textureType button{
+.textureTypeBtn, .textureSelected{
+    cursor: pointer;
     border-radius: 5px;
     flex: 1;
     display: inline-block;
     margin: 0.5rem;
+    border: 0;
+    padding: 0.5rem;
+}
+
+.textureSelected{
+    background-color: rgba(210, 105, 30);
 }
