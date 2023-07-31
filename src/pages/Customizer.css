@@ -34,11 +34,22 @@
     cursor: pointer;
 }
 
-.customToggles img{
+.tabImg{
     width: 2rem;
     height: 2rem;
+    border-radius: 100%;
+    transition: all 0.15s ease-in-out;
 }
 
-.customToggles img:hover{
+.tabImgSelected{
+    width: 3rem;
+    height: 3rem;
+    background-color: rgba(210, 105, 30, 0.5);
+    border-radius: 100%;
+    padding: 0.5rem;
+    transition: all 0.15s ease-in-out;
+}
+
+.tabImg:hover{
     scale: 1.5;
 }

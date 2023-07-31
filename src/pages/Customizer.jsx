@@ -37,6 +37,9 @@ const Customizer = () => {
               <img
                 src="./toggleLogo.png"
                 alt="toggle Logo"
+                className={
+                  pageContext.isLogoTexture ? "tabImgSelected" : "tabImg"
+                }
                 onClick={() => {
                   pageContext.setIsLogoTexture((prev) => !prev);
                 }}
@@ -44,6 +47,9 @@ const Customizer = () => {
               <img
                 src="./toggleFull.png"
                 alt="toggle Full logo in shirt"
+                className={
+                  pageContext.isFullTexture ? "tabImgSelected" : "tabImg"
+                }
                 onClick={() => {
                   pageContext.setIsFullTexture((prev) => !prev);
                 }}
