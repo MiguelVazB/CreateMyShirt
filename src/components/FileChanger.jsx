@@ -9,7 +9,7 @@ const FileChanger = () => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       readFileContent(selectedFile, ({ url }) => {
-        pageContext.setLogoTexture(url);
+        pageContext.setLogoTexture({ logo: url, logoName: selectedFile.name });
       });
     }
   };
@@ -24,14 +24,37 @@ const FileChanger = () => {
         />
         <button
           onClick={() => document.querySelector('input[type="file"]').click()}
+          className="uploadBtn"
         >
           Click to upload file
         </button>
-        <p>No file selected</p>
+        <p>
+          {pageContext.logoTexture.logoName
+            ? pageContext.logoTexture.logoName
+            : "File not selected"}
+        </p>
       </div>
       <div className="textureType">
-        <button>Logo</button>
-        <button>Full</button>
+        <button
+          className={
+            pageContext.isLogoTexture ? "textureSelected" : "textureTypeBtn"
+          }
+          onClick={() => {
+            pageContext.setIsLogoTexture((prev) => !prev);
+          }}
+        >
+          Logo
+        </button>
+        <button
+          className={
+            pageContext.isFullTexture ? "textureSelected" : "textureTypeBtn"
+          }
+          onClick={() => {
+            pageContext.setIsFullTexture((prev) => !prev);
+          }}
+        >
+          Full
+        </button>
       </div>
     </div>
   );
