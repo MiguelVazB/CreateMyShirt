@@ -23,7 +23,7 @@ const MainCanvas = () => {
       <CameraRig>
         <Background />
         <Center>
-          <Shirt className="shirt" />
+          <Shirt />
         </Center>
       </CameraRig>
     </Canvas>
