@@ -9,7 +9,10 @@ function App() {
   const [isFullTexture, setIsFullTexture] = useState(false);
   const [isLogoTexture, setIsLogoTexture] = useState(true);
   const [shirtColor, setShirtColor] = useState("chocolate");
-  const [logoTexture, setLogoTexture] = useState("./threejsLogo.png");
+  const [logoTexture, setLogoTexture] = useState({
+    logo: "./threejsLogo.png",
+    logoName: null,
+  });
 
   return (
     <PageContext.Provider
