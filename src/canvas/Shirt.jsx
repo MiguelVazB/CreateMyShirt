@@ -8,7 +8,7 @@ const Shirt = () => {
   const pageContext = useContext(PageContext);
   const { nodes, materials } = useGLTF("./tshirt.glb");
 
-  const logoTexture = useTexture(pageContext.logoTexture);
+  const logoTexture = useTexture(pageContext.logoTexture.logo);
 
   useFrame((state, delta) =>
     easing.dampC(materials.lambert1.color, pageContext.shirtColor, 0.25, delta)
