@@ -9,18 +9,6 @@ import { fadeAnimation, slideAnimation } from "../utils/animations";
 const Customizer = () => {
   const pageContext = useContext(PageContext);
 
-  const [tempColor, setTempColor] = useState();
-
-  function toggleShirtColor() {
-    // chocolate color in hex #427618
-    if (pageContext.shirtColor !== "chocolate") {
-      setTempColor(pageContext.shirtColor);
-      pageContext.setShirtColor("chocolate");
-    } else {
-      pageContext.setShirtColor(tempColor);
-    }
-  }
-
   return (
     <AnimatePresence>
       {!pageContext.intro && (
@@ -47,14 +35,18 @@ const Customizer = () => {
           >
             <div className="customToggles">
               <img
-                src="./toggleColor.png"
-                alt="toggle Color"
-                onClick={toggleShirtColor}
-              />
-              <img
                 src="./toggleLogo.png"
                 alt="toggle Logo"
-                onClick={() => pageContext.setIsLogoTexture((prev) => !prev)}
+                onClick={() => {
+                  pageContext.setIsLogoTexture((prev) => !prev);
+                }}
+              />
+              <img
+                src="./toggleFull.png"
+                alt="toggle Full logo in shirt"
+                onClick={() => {
+                  pageContext.setIsFullTexture((prev) => !prev);
+                }}
               />
               <div>AI Helper</div>
             </div>
