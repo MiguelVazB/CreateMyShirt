@@ -29,31 +29,33 @@ const CustomizationMenu = () => {
 
   return (
     <div className="customMenu">
-      <div className="customTab">
-        <Tab
-          tab="Color"
-          handleClick={() =>
-            setActiveTab((prev) =>
-              prev === "colorChanger" ? "" : "colorChanger"
-            )
-          }
-        />
-        <Tab
-          tab="File"
-          handleClick={() =>
-            setActiveTab((prev) =>
-              prev === "fileChanger" ? "" : "fileChanger"
-            )
-          }
-        />
-        <Tab
-          tab="AI"
-          handleClick={() =>
-            setActiveTab((prev) => (prev === "aiChanger" ? "" : "aiChanger"))
-          }
-        />
+      <div className="customMenuContainer">
+        <div className="customTab">
+          <Tab
+            tab="Color"
+            handleClick={() =>
+              setActiveTab((prev) =>
+                prev === "colorChanger" ? "" : "colorChanger"
+              )
+            }
+          />
+          <Tab
+            tab="File"
+            handleClick={() =>
+              setActiveTab((prev) =>
+                prev === "fileChanger" ? "" : "fileChanger"
+              )
+            }
+          />
+          <Tab
+            tab="AI"
+            handleClick={() =>
+              setActiveTab((prev) => (prev === "aiChanger" ? "" : "aiChanger"))
+            }
+          />
+        </div>
+        {generateTabContent()}
       </div>
-      {generateTabContent()}
     </div>
   );
 };
