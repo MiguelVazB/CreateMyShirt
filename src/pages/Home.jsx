@@ -25,7 +25,7 @@ const Home = () => {
           </motion.header>
 
           <motion.div
-            className="HomePageContentContainer"
+            className="homePageContentContainer"
             {...headContainerAnimation}
           >
             <motion.div className="headTextContainer" {...headTextAnimation}>
