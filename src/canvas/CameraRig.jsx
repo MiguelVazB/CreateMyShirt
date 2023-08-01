@@ -19,7 +19,7 @@ const CameraRig = ({ children }) => {
       if (resizeShirtMobile) shirtPosition = [0, 0.2, 2.5];
     } else {
       if (resizeShirtMobile) shirtPosition = [0, 0, 2.5];
-      else shirtPosition = [0, -0.05, 2];
+      else shirtPosition = [0, -0.05, 1.55];
     }
 
     easing.damp3(state.camera.position, shirtPosition, 0.25, delta);
