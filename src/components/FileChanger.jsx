@@ -15,7 +15,6 @@ const FileChanger = () => {
             logoName: selectedFile.name,
           });
         } else {
-          console.log("Selected file is not an image:", selectedFile.name);
           pageContext.setLogoTexture((prev) => ({
             logo: prev.logo,
             logoName: "Selected file is not an image",
