@@ -8,8 +8,19 @@ const FileChanger = () => {
   const handleFileSelect = (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
-      readFileContent(selectedFile, ({ url }) => {
-        pageContext.setLogoTexture({ logo: url, logoName: selectedFile.name });
+      readFileContent(selectedFile, ({ content, url }) => {
+        if (selectedFile.type.startsWith("image/")) {
+          pageContext.setLogoTexture({
+            logo: url,
+            logoName: selectedFile.name,
+          });
+        } else {
+          console.log("Selected file is not an image:", selectedFile.name);
+          pageContext.setLogoTexture((prev) => ({
+            logo: prev.logo,
+            logoName: "Selected file is not an image",
+          }));
+        }
       });
     }
   };
