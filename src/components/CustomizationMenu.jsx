@@ -10,7 +10,6 @@ const CustomizationMenu = () => {
   const pageContext = useContext(PageContext);
 
   const [activeTab, setActiveTab] = useState();
-  const [file, setFile] = useState("");
   const [prompt, setPrompt] = useState("");
   const [generatingImage, setGeneratingImage] = useState(false);
 
@@ -21,9 +20,28 @@ const CustomizationMenu = () => {
       case "fileChanger":
         return <FileChanger />;
       case "aiChanger":
-        return <AIChanger />;
+        return (
+          <AIChanger
+            prompt={prompt}
+            setPrompt={setPrompt}
+            generatingImage={generatingImage}
+            handleSubmit={handleSubmit}
+          />
+        );
       default:
         return null;
+    }
+  };
+
+  const handleSubmit = async (type) => {
+    if (!prompt) return alert("Please enter a prompt");
+
+    try {
+    } catch (error) {
+      alert(error);
+    } finally {
+      setGeneratingImage(false);
+      setActiveTab("");
     }
   };
 
