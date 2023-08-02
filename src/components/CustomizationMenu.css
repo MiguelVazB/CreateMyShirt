@@ -109,6 +109,27 @@
     padding: 0.5rem;
 }
 
-.textureSelected{
+.textureSelected, .aiButtonSelected{
     background-color: rgba(210, 105, 30);
+}
+
+.aiChanger, .aiChangerTextArea{
+    background-color: rgba(255,255,255,0.2);
+    border: 0;
+    border-radius: 10px;
+}
+
+.aiButtons{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 0.5rem;
+}
+
+.aiButtons button{
+    margin: 0;
+    flex: 1;
+    border-radius: 10px;
+    border: 0;
+    padding: 0.3rem;
+    cursor: pointer;
 }
