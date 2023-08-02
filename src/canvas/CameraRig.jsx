@@ -9,16 +9,18 @@ const CameraRig = ({ children }) => {
   const groupRef = useRef();
 
   useFrame((state, delta) => {
+    const resizeShirtLaptopLarge = window.innerWidth <= 1690;
     const resizeShirtLaptop = window.innerWidth <= 1260;
     const resizeShirtMobile = window.innerWidth <= 600;
 
     // position of shirt
-    let shirtPosition = [-0.35, 0, 1.5];
+    let shirtPosition = [-0.3, 0, 1.5];
     if (pageContext.intro) {
+      if (resizeShirtLaptopLarge) shirtPosition = [-0.22, 0, 1.8];
       if (resizeShirtLaptop) shirtPosition = [0, 0.15, 2];
-      if (resizeShirtMobile) shirtPosition = [0, 0.2, 2.5];
+      if (resizeShirtMobile) shirtPosition = [0, 0.3, 2.8];
     } else {
-      if (resizeShirtMobile) shirtPosition = [0, 0, 2.5];
+      if (resizeShirtMobile) shirtPosition = [0, 0, 2.8];
       else shirtPosition = [0, -0.05, 1.55];
     }
 
