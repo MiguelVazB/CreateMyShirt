@@ -4,8 +4,15 @@ import { PageContext } from "../context/PageContext";
 
 const FileChanger = () => {
   const pageContext = useContext(PageContext);
+  const [fileUploaded, setFileUploaded] = React.useState(false);
 
   const handleFileSelect = (event) => {
+    if (
+      pageContext.isLogoTexture === false &&
+      pageContext.isFullTexture === false
+    ) {
+      pageContext.setIsLogoTexture(true);
+    }
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       readFileContent(selectedFile, ({ content, url }) => {
@@ -14,11 +21,13 @@ const FileChanger = () => {
             logo: url,
             logoName: selectedFile.name,
           });
+          setFileUploaded(true);
         } else {
           pageContext.setLogoTexture((prev) => ({
             logo: prev.logo,
             logoName: "Selected file is not an image",
           }));
+          setFileUploaded(false);
         }
       });
     }
@@ -44,28 +53,30 @@ const FileChanger = () => {
             : "File not selected"}
         </p>
       </div>
-      <div className="textureType">
-        <button
-          className={
-            pageContext.isLogoTexture ? "textureSelected" : "textureTypeBtn"
-          }
-          onClick={() => {
-            pageContext.setIsLogoTexture((prev) => !prev);
-          }}
-        >
-          Logo
-        </button>
-        <button
-          className={
-            pageContext.isFullTexture ? "textureSelected" : "textureTypeBtn"
-          }
-          onClick={() => {
-            pageContext.setIsFullTexture((prev) => !prev);
-          }}
-        >
-          Full
-        </button>
-      </div>
+      {fileUploaded && (
+        <div className="textureType">
+          <button
+            className={
+              pageContext.isLogoTexture ? "textureSelected" : "textureTypeBtn"
+            }
+            onClick={() => {
+              pageContext.setIsLogoTexture((prev) => !prev);
+            }}
+          >
+            Logo
+          </button>
+          <button
+            className={
+              pageContext.isFullTexture ? "textureSelected" : "textureTypeBtn"
+            }
+            onClick={() => {
+              pageContext.setIsFullTexture((prev) => !prev);
+            }}
+          >
+            Full
+          </button>
+        </div>
+      )}
     </div>
   );
 };
