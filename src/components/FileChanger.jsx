@@ -4,7 +4,6 @@ import { PageContext } from "../context/PageContext";
 
 const FileChanger = () => {
   const pageContext = useContext(PageContext);
-  const [fileUploaded, setFileUploaded] = React.useState(false);
 
   const handleFileSelect = (event) => {
     if (
@@ -21,13 +20,15 @@ const FileChanger = () => {
             logo: url,
             logoName: selectedFile.name,
           });
-          setFileUploaded(true);
+          pageContext.setCurrentFileUploaded({
+            logo: url,
+            logoName: selectedFile.name,
+          });
         } else {
           pageContext.setLogoTexture((prev) => ({
             logo: prev.logo,
             logoName: "Selected file is not an image",
           }));
-          setFileUploaded(false);
         }
       });
     }
@@ -53,7 +54,7 @@ const FileChanger = () => {
             : "File not selected"}
         </p>
       </div>
-      {fileUploaded && (
+      {pageContext.currentFileUploaded && (
         <div className="textureType">
           <button
             className={
