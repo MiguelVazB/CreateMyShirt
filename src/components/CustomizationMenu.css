@@ -125,11 +125,17 @@
     column-gap: 0.5rem;
 }
 
-.aiButtons button{
+.aiButton, .aiButtonSelected{
     margin: 0;
     flex: 1;
     border-radius: 10px;
     border: 0;
     padding: 0.3rem;
     cursor: pointer;
+}
+
+.aiButtonSelected{
+    background-color: rgba(210, 105, 30);
+    font-weight: bold;
+    padding: 0.3rem 0.5rem;
 }
