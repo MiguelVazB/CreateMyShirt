@@ -3,6 +3,7 @@ import { PageContext } from "../context/PageContext";
 import ColorChanger from "./ColorChanger";
 import FileChanger from "./FileChanger";
 import AIChanger from "./AIChanger";
+import TextChanger from "./TextChanger";
 import Tab from "./Tab";
 import "./CustomizationMenu.css";
 
@@ -29,6 +30,8 @@ const CustomizationMenu = () => {
             handleSubmit={handleSubmit}
           />
         );
+      case "textChanger":
+        return <TextChanger />;
       default:
         return null;
     }
@@ -112,6 +115,14 @@ const CustomizationMenu = () => {
                     logoName: "AI",
                   })
                 : "";
+            }}
+          />
+          <Tab
+            tab="Text"
+            handleClick={() => {
+              setActiveTab((prev) =>
+                prev === "textChanger" ? "" : "textChanger"
+              );
             }}
           />
         </div>
