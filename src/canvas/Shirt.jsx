@@ -9,6 +9,7 @@ const Shirt = () => {
   const { nodes, materials } = useGLTF("./tshirt.glb");
 
   const logoTexture = useTexture(pageContext.logoTexture.logo);
+  const textOverlay = useTexture(pageContext.textOverlay);
 
   useFrame((state, delta) =>
     easing.dampC(materials.lambert1.color, pageContext.shirtColor, 0.25, delta)
@@ -46,10 +47,10 @@ const Shirt = () => {
         )}
         {pageContext.isTextOverlay && (
           <Decal
-            position={[0, 0.04, 0.15]}
+            position={[0.07, 0.14, 0.15]}
             rotation={[0, 0, 0]}
             scale={0.15}
-            map={logoTexture}
+            map={textOverlay}
             anisotropy={16}
             depthTest={false}
             depthWrite={true}
