@@ -1,6 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
+import { PageContext } from "../context/PageContext";
 
 const TextChanger = () => {
+  const pageContext = useContext(PageContext);
   const inputRef = useRef(null);
 
   function handleClick() {
@@ -16,7 +18,11 @@ const TextChanger = () => {
     const y = (canvas.height + fontSize) / 2;
     ctx.fillText(text, x, y);
     const dataUrl = canvas.toDataURL();
-    console.log(dataUrl);
+    pageContext.setLogoTexture({
+      logo: dataUrl,
+      logoName: "Text",
+    });
+    pageContext.setTextOverlay(dataUrl);
   }
 
   return (

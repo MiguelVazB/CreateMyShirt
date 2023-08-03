@@ -123,6 +123,12 @@ const CustomizationMenu = () => {
               setActiveTab((prev) =>
                 prev === "textChanger" ? "" : "textChanger"
               );
+              pageContext.textOverlay
+                ? pageContext.setLogoTexture({
+                    logo: pageContext.textOverlay,
+                    logoName: "Text Entry",
+                  })
+                : "";
             }}
           />
         </div>
