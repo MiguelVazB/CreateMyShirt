@@ -35,6 +35,16 @@ const TextChanger = () => {
     if (apiKey) setApiKeyReady(true);
   }, [apiKey]);
 
+  function handleXPosChange(event) {
+    let xPos = Number(event.target.value);
+    pageContext.setTextPos((prev) => {
+      return {
+        ...prev,
+        x: xPos,
+      };
+    });
+  }
+
   return (
     <div className="textChanger">
       <label htmlFor="textEntered">Text to put on the shirt:</label>
@@ -51,7 +61,26 @@ const TextChanger = () => {
           onChange={(nextFont) => setCurrentFont(nextFont.family)}
         />
       )}
-      {/* <input type="range" /> */}
+      <label htmlFor="positionX">X Position:</label>
+      <input
+        type="range"
+        id="positionX"
+        name="positionX"
+        min={-0.06}
+        max={0.06}
+        step={0.01}
+        value={pageContext.textPos.x}
+        onChange={handleXPosChange}
+      />
+      <input
+        id="positionXInput"
+        type="number"
+        min={-0.06}
+        max={0.06}
+        step={0.01}
+        value={pageContext.textPos.x}
+        onChange={handleXPosChange}
+      />
       <button onClick={handleClick}>Set Text</button>
     </div>
   );

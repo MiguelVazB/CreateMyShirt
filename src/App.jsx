@@ -17,6 +17,10 @@ function App() {
   const [currentFileUploaded, setCurrentFileUploaded] = useState();
   const [generatedImage, setGeneratedImage] = useState("");
   const [textOverlay, setTextOverlay] = useState("./welcome.png");
+  const [textPos, setTextPos] = useState({
+    x: 0.07,
+    y: 0.14,
+  });
 
   return (
     <PageContext.Provider
@@ -39,6 +43,8 @@ function App() {
         setTextOverlay: setTextOverlay,
         isTextOverlay: isTextOverlay,
         setIsTextOverlay: setIsTextOverlay,
+        textPos: textPos,
+        setTextPos: setTextPos,
       }}
     >
       <main>

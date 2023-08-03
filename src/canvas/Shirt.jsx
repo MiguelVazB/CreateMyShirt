@@ -47,7 +47,7 @@ const Shirt = () => {
         )}
         {pageContext.isTextOverlay && (
           <Decal
-            position={[0.07, 0.14, 0.15]}
+            position={[pageContext.textPos.x, pageContext.textPos.y, 0.15]}
             rotation={[0, 0, 0]}
             scale={0.15}
             map={textOverlay}
