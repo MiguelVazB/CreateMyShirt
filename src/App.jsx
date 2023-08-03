@@ -13,6 +13,8 @@ function App() {
     logo: "./threejsLogo.png",
     logoName: null,
   });
+  const [currentFileUploaded, setCurrentFileUploaded] = useState();
+  const [generatedImage, setGeneratedImage] = useState("");
 
   return (
     <PageContext.Provider
@@ -27,6 +29,10 @@ function App() {
         setShirtColor: setShirtColor,
         logoTexture: logoTexture,
         setLogoTexture: setLogoTexture,
+        currentFileUploaded: currentFileUploaded,
+        setCurrentFileUploaded: setCurrentFileUploaded,
+        generatedImage: generatedImage,
+        setGeneratedImage: setGeneratedImage,
       }}
     >
       <main>
