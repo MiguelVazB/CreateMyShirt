@@ -8,7 +8,7 @@ function App() {
   const [intro, setIntro] = useState(true);
   const [isFullTexture, setIsFullTexture] = useState(false);
   const [isLogoTexture, setIsLogoTexture] = useState(true);
-  const [isTextOverlay, setIsTextOverlay] = useState(false);
+  const [isTextOverlay, setIsTextOverlay] = useState(true);
   const [shirtColor, setShirtColor] = useState("chocolate");
   const [logoTexture, setLogoTexture] = useState({
     logo: "./threejsLogo.png",
@@ -16,7 +16,7 @@ function App() {
   });
   const [currentFileUploaded, setCurrentFileUploaded] = useState();
   const [generatedImage, setGeneratedImage] = useState("");
-  const [textOverlay, setTextOverlay] = useState("");
+  const [textOverlay, setTextOverlay] = useState("./welcome.png");
 
   return (
     <PageContext.Provider
