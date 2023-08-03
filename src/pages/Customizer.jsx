@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PageContext } from "../context/PageContext";
 import CustomizationMenu from "../components/CustomizationMenu";
@@ -8,7 +8,6 @@ import { fadeAnimation, slideAnimation } from "../utils/animations";
 
 const Customizer = () => {
   const pageContext = useContext(PageContext);
-
   return (
     <AnimatePresence>
       {!pageContext.intro && (
@@ -54,7 +53,6 @@ const Customizer = () => {
                   pageContext.setIsFullTexture((prev) => !prev);
                 }}
               />
-              <div>AI Helper</div>
             </div>
           </motion.div>
         </>
