@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PageContext } from "../context/PageContext";
 
 const AIChanger = ({ prompt, setPrompt, generatingImage, handleSubmit }) => {
+  const pageContext = useContext(PageContext);
+
   return (
     <div className="aiChanger">
       <textarea
@@ -12,11 +15,25 @@ const AIChanger = ({ prompt, setPrompt, generatingImage, handleSubmit }) => {
       />
       <div className="aiButtons">
         {generatingImage ? (
-          <button>Asking AI...</button>
+          <button className="aiButton">Asking AI...</button>
         ) : (
           <>
-            <button onClick={() => handleSubmit("logo")}>AI Logo</button>
-            <button onClick={() => handleSubmit("full")}>AI Full</button>
+            <button
+              className={
+                pageContext.isLogoTexture ? "aiButtonSelected" : "aiButton"
+              }
+              onClick={() => handleSubmit("logo")}
+            >
+              AI Logo
+            </button>
+            <button
+              className={
+                pageContext.isFullTexture ? "aiButtonSelected" : "aiButton"
+              }
+              onClick={() => handleSubmit("full")}
+            >
+              AI Full
+            </button>
           </>
         )}
       </div>
