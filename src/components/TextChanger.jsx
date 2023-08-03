@@ -1,6 +1,7 @@
 import React, { useRef, useContext, useState, useEffect } from "react";
 import { PageContext } from "../context/PageContext";
 import FontPicker from "font-picker-react";
+import PositionChanger from "./PositionChanger";
 
 const TextChanger = () => {
   const pageContext = useContext(PageContext);
@@ -35,16 +36,6 @@ const TextChanger = () => {
     if (apiKey) setApiKeyReady(true);
   }, [apiKey]);
 
-  function handleXPosChange(event) {
-    let xPos = Number(event.target.value);
-    pageContext.setTextPos((prev) => {
-      return {
-        ...prev,
-        x: xPos,
-      };
-    });
-  }
-
   return (
     <div className="textChanger">
       <label htmlFor="textEntered">Text to put on the shirt:</label>
@@ -61,25 +52,13 @@ const TextChanger = () => {
           onChange={(nextFont) => setCurrentFont(nextFont.family)}
         />
       )}
-      <label htmlFor="positionX">X Position:</label>
-      <input
-        type="range"
-        id="positionX"
-        name="positionX"
-        min={-0.06}
-        max={0.06}
-        step={0.01}
-        value={pageContext.textPos.x}
-        onChange={handleXPosChange}
-      />
-      <input
-        id="positionXInput"
-        type="number"
-        min={-0.06}
-        max={0.06}
-        step={0.01}
-        value={pageContext.textPos.x}
-        onChange={handleXPosChange}
+      <PositionChanger
+        minX={-0.08}
+        maxX={0.08}
+        minY={-0.3}
+        maxY={0.18}
+        minSize={0.05}
+        maxSize={1}
       />
       <button onClick={handleClick}>Set Text</button>
     </div>

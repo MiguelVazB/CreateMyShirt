@@ -20,6 +20,8 @@ function App() {
   const [textPos, setTextPos] = useState({
     x: 0.07,
     y: 0.14,
+    size: 0.15,
+    rotation: 0,
   });
 
   return (
