@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { PageContext } from "../context/PageContext";
 import ColorChanger from "./ColorChanger";
 import FileChanger from "./FileChanger";
@@ -15,6 +15,20 @@ const CustomizationMenu = () => {
   const [prompt, setPrompt] = useState("");
   const [currentPrompt, setCurrentPrompt] = useState("");
   const [generatingImage, setGeneratingImage] = useState(false);
+
+  useEffect(() => {
+    function handleClickOutsideMenu(e) {
+      if (String(e.target.nodeName) === "CANVAS") {
+        setActiveTab();
+      }
+    }
+    window.addEventListener("click", handleClickOutsideMenu);
+    window.addEventListener("touchstart", handleClickOutsideMenu);
+    return () => {
+      window.removeEventListener("click", handleClickOutsideMenu);
+      window.removeEventListener("touchstart", handleClickOutsideMenu);
+    };
+  }, []);
 
   const generateTabContent = () => {
     switch (activeTab) {
