@@ -12,20 +12,34 @@ const TextChanger = () => {
   const [apiKeyReady, setApiKeyReady] = useState(false);
 
   function handleClick() {
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.style.backgroundColor = "transparent";
-    let fontSize = 50;
-    ctx.font = `${fontSize}px ${currentFont}`;
-    const text = inputRef.current.value;
-    const textWidth = ctx.measureText(text).width;
-    const x = (canvas.width - textWidth) / 2;
-    const y = (canvas.height + fontSize) / 2;
-    ctx.fillText(text, x, y);
-    const dataUrl = canvas.toDataURL();
-    pageContext.setTextOverlay(dataUrl);
-    pageContext.setIsTextOverlay(true);
+    let inputText = inputRef.current.value;
+    if (inputText.length > 0) {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.style.backgroundColor = "transparent";
+      let fontSize = 50;
+      ctx.font = `${fontSize}px ${currentFont}`;
+      const text = inputRef.current.value;
+      const textWidth = ctx.measureText(text).width;
+      const x = (canvas.width - textWidth) / 2;
+      const y = (canvas.height + fontSize) / 2;
+      ctx.fillText(text, x, y);
+      const dataUrl = canvas.toDataURL();
+      pageContext.setTextOverlay(dataUrl);
+      pageContext.setIsTextOverlay(true);
+    } else {
+      alert("Enter a text!");
+    }
+  }
+
+  function resetToDefault() {
+    pageContext.setTextPos({
+      x: 0.07,
+      y: 0.14,
+      size: 0.15,
+      rotation: 0,
+    });
   }
 
   useEffect(() => {
@@ -60,7 +74,14 @@ const TextChanger = () => {
         minSize={0.05}
         maxSize={1}
       />
-      <button onClick={handleClick}>Set Text</button>
+      <div className="textChangerButtons">
+        <button type="reset" className="setTextBtn" onClick={resetToDefault}>
+          Reset
+        </button>
+        <button className="setTextBtn" onClick={handleClick}>
+          Set Text
+        </button>
+      </div>
     </div>
   );
 };
