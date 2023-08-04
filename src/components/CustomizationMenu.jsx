@@ -4,6 +4,7 @@ import ColorChanger from "./ColorChanger";
 import FileChanger from "./FileChanger";
 import AIChanger from "./AIChanger";
 import TextChanger from "./TextChanger";
+import PositionChanger from "./PositionChanger";
 import Tab from "./Tab";
 import "./CustomizationMenu.css";
 
@@ -32,10 +33,28 @@ const CustomizationMenu = () => {
         );
       case "textChanger":
         return <TextChanger />;
+      case "posChanger":
+        return (
+          <div className="logoPosChanger">
+            <PositionChanger elementToPos="logo" />
+            <button className="setTextBtn" onClick={handleResetLogoPos}>
+              Reset
+            </button>
+          </div>
+        );
       default:
         return null;
     }
   };
+
+  function handleResetLogoPos() {
+    pageContext.setLogoPos({
+      x: 0,
+      y: 0.04,
+      size: 0.15,
+      rotation: 0,
+    });
+  }
 
   const handleSubmit = async (type) => {
     if (!prompt) return alert("Please enter a prompt");
@@ -115,6 +134,14 @@ const CustomizationMenu = () => {
                     logoName: "AI",
                   })
                 : "";
+            }}
+          />
+          <Tab
+            tab="Position"
+            handleClick={() => {
+              setActiveTab((prev) =>
+                prev === "posChanger" ? "" : "posChanger"
+              );
             }}
           />
           <Tab
