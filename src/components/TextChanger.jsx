@@ -1,5 +1,6 @@
 import React, { useRef, useContext, useState, useEffect } from "react";
 import { PageContext } from "../context/PageContext";
+import { ChromePicker } from "react-color";
 import FontPicker from "font-picker-react";
 import PositionChanger from "./PositionChanger";
 
@@ -20,6 +21,7 @@ const TextChanger = () => {
       canvas.style.backgroundColor = "transparent";
       let fontSize = 50;
       ctx.font = `${fontSize}px ${currentFont}`;
+      ctx.fillStyle = pageContext.textColor;
       const text = inputRef.current.value;
       const textWidth = ctx.measureText(text).width;
       const x = (canvas.width - textWidth) / 2;
@@ -41,6 +43,10 @@ const TextChanger = () => {
       rotation: 0,
     });
   }
+
+  const handleChangeComplete = (color) => {
+    pageContext.setTextColor(color.hsl);
+  };
 
   useEffect(() => {
     setApiKey(import.meta.env.VITE_API_KEY);
@@ -67,6 +73,12 @@ const TextChanger = () => {
         />
       )}
       <PositionChanger />
+      <ChromePicker
+        color={pageContext.textColor}
+        width="fit-content"
+        disableAlpha
+        onChange={handleChangeComplete}
+      />
       <div className="textChangerButtons">
         <button type="reset" className="setTextBtn" onClick={resetToDefault}>
           Reset

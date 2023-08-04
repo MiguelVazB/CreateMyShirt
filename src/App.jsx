@@ -10,6 +10,7 @@ function App() {
   const [isLogoTexture, setIsLogoTexture] = useState(true);
   const [isTextOverlay, setIsTextOverlay] = useState(true);
   const [shirtColor, setShirtColor] = useState("chocolate");
+  const [textColor, setTextColor] = useState("black");
   const [logoTexture, setLogoTexture] = useState({
     logo: "./threejsLogo.png",
     logoName: null,
@@ -55,6 +56,8 @@ function App() {
         setTextPos: setTextPos,
         logoPos: logoPos,
         setLogoPos: setLogoPos,
+        textColor: textColor,
+        setTextColor: setTextColor,
       }}
     >
       <main>

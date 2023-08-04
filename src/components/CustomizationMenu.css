@@ -198,3 +198,9 @@
     justify-content: center;
     row-gap: 1rem;
 }
+
+.chrome-picker{
+    background-color: rgba(255,255,255,0.3) !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
