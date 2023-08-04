@@ -23,6 +23,12 @@ function App() {
     size: 0.15,
     rotation: 0,
   });
+  const [logoPos, setLogoPos] = useState({
+    x: 0,
+    y: 0.04,
+    size: 0.15,
+    rotation: 0,
+  });
 
   return (
     <PageContext.Provider
@@ -47,6 +53,8 @@ function App() {
         setIsTextOverlay: setIsTextOverlay,
         textPos: textPos,
         setTextPos: setTextPos,
+        logoPos: logoPos,
+        setLogoPos: setLogoPos,
       }}
     >
       <main>
