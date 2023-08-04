@@ -159,6 +159,7 @@
 .positionChanger{
     display: flex;
     flex-direction: column;
+    row-gap: 0.5rem;
 }
 
 .inputChangers{
@@ -176,7 +177,7 @@
     justify-content: space-evenly;
 }
 
-.textChanger .setTextBtn{
+.setTextBtn{
     width: max-content;
     padding: 0.5rem 0.8rem;
     border-radius: 10px;
@@ -184,4 +185,16 @@
     cursor: pointer;
     font-weight: bold;
     font-size: medium;
+}
+
+.logoPosChanger{
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    border: 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 1rem;
 }
