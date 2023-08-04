@@ -36,9 +36,9 @@ const Shirt = () => {
         )}
         {pageContext.isLogoTexture && (
           <Decal
-            position={[0, 0.04, 0.15]}
-            rotation={[0, 0, 0]}
-            scale={0.15}
+            position={[pageContext.logoPos.x, pageContext.logoPos.y, 0.15]}
+            rotation={[0, 0, pageContext.logoPos.rotation]}
+            scale={pageContext.logoPos.size}
             map={logoTexture}
             anisotropy={16}
             depthTest={false}
