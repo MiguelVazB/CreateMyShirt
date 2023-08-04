@@ -36,6 +36,7 @@ const Customizer = () => {
               <img
                 src="./toggleLogo.png"
                 alt="toggle Logo"
+                title="Toggle Shirt Logo on/off"
                 className={
                   pageContext.isLogoTexture ? "tabImgSelected" : "tabImg"
                 }
@@ -46,6 +47,7 @@ const Customizer = () => {
               <img
                 src="./toggleFull.png"
                 alt="toggle Full logo in shirt"
+                title="Toggle Full Shirt Logo on/off"
                 className={
                   pageContext.isFullTexture ? "tabImgSelected" : "tabImg"
                 }
@@ -56,6 +58,7 @@ const Customizer = () => {
               <img
                 src="./toggleText.png"
                 alt="toggle text in shirt"
+                title="Toggle Shirt Text on/off"
                 className={
                   pageContext.isTextOverlay ? "tabImgSelected" : "tabImg"
                 }
