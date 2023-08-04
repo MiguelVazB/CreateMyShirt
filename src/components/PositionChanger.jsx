@@ -2,26 +2,34 @@ import React from "react";
 import { PageContext } from "../context/PageContext";
 
 const PositionChanger = ({
-  minX,
-  maxX,
-  minY,
-  maxY,
+  minX = -0.08,
+  maxX = 0.08,
+  minY = -0.3,
+  maxY = 0.18,
   step = 0.01,
-  minSize,
-  maxSize,
+  minSize = 0.05,
+  maxSize = 1,
   minRot = 0,
   maxRot = 6.3,
+  elementToPos = "text",
 }) => {
   const pageContext = React.useContext(PageContext);
 
   function handleChange(event) {
     let updatedValue = Number(event.target.value);
-    pageContext.setTextPos((prev) => {
-      return {
-        ...prev,
-        [event.target.name]: updatedValue,
-      };
-    });
+    elementToPos === "text"
+      ? pageContext.setTextPos((prev) => {
+          return {
+            ...prev,
+            [event.target.name]: updatedValue,
+          };
+        })
+      : pageContext.setLogoPos((prev) => {
+          return {
+            ...prev,
+            [event.target.name]: updatedValue,
+          };
+        });
   }
 
   return (
@@ -36,7 +44,11 @@ const PositionChanger = ({
             min={minX}
             max={maxX}
             step={step}
-            value={pageContext.textPos.x}
+            value={
+              elementToPos === "text"
+                ? pageContext.textPos.x
+                : pageContext.logoPos.x
+            }
             onChange={handleChange}
           />
           <input
@@ -46,7 +58,11 @@ const PositionChanger = ({
             min={minX}
             max={maxX}
             step={step}
-            value={pageContext.textPos.x}
+            value={
+              elementToPos === "text"
+                ? pageContext.textPos.x
+                : pageContext.logoPos.x
+            }
             onChange={handleChange}
           />
         </div>
@@ -62,7 +78,11 @@ const PositionChanger = ({
             min={minY}
             max={maxY}
             step={step}
-            value={pageContext.textPos.y}
+            value={
+              elementToPos === "text"
+                ? pageContext.textPos.y
+                : pageContext.logoPos.y
+            }
             onChange={handleChange}
           />
           <input
@@ -72,7 +92,11 @@ const PositionChanger = ({
             min={minY}
             max={maxY}
             step={step}
-            value={pageContext.textPos.y}
+            value={
+              elementToPos === "text"
+                ? pageContext.textPos.y
+                : pageContext.logoPos.y
+            }
             onChange={handleChange}
           />
         </div>
@@ -88,7 +112,11 @@ const PositionChanger = ({
             min={minSize}
             max={maxSize}
             step={step}
-            value={pageContext.textPos.size}
+            value={
+              elementToPos === "text"
+                ? pageContext.textPos.size
+                : pageContext.logoPos.size
+            }
             onChange={handleChange}
           />
           <input
@@ -98,7 +126,11 @@ const PositionChanger = ({
             min={minSize}
             max={maxSize}
             step={step}
-            value={pageContext.textPos.size}
+            value={
+              elementToPos === "text"
+                ? pageContext.textPos.size
+                : pageContext.logoPos.size
+            }
             onChange={handleChange}
           />
         </div>
@@ -114,7 +146,11 @@ const PositionChanger = ({
             min={minRot}
             max={maxRot}
             step={step}
-            value={pageContext.textPos.rotation}
+            value={
+              elementToPos === "text"
+                ? pageContext.textPos.rotation
+                : pageContext.logoPos.rotation
+            }
             onChange={handleChange}
           />
           <input
@@ -125,7 +161,11 @@ const PositionChanger = ({
             min={minRot}
             max={maxRot}
             step={step}
-            value={pageContext.textPos.rotation}
+            value={
+              elementToPos === "text"
+                ? pageContext.textPos.rotation
+                : pageContext.logoPos.rotation
+            }
             onChange={handleChange}
           />
         </div>
