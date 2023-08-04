@@ -53,6 +53,16 @@ const Customizer = () => {
                   pageContext.setIsFullTexture((prev) => !prev);
                 }}
               />
+              <img
+                src="./toggleText.png"
+                alt="toggle text in shirt"
+                className={
+                  pageContext.isTextOverlay ? "tabImgSelected" : "tabImg"
+                }
+                onClick={() => {
+                  pageContext.setIsTextOverlay((prev) => !prev);
+                }}
+              />
             </div>
           </motion.div>
         </>
