@@ -66,14 +66,7 @@ const TextChanger = () => {
           onChange={(nextFont) => setCurrentFont(nextFont.family)}
         />
       )}
-      <PositionChanger
-        minX={-0.08}
-        maxX={0.08}
-        minY={-0.3}
-        maxY={0.18}
-        minSize={0.05}
-        maxSize={1}
-      />
+      <PositionChanger />
       <div className="textChangerButtons">
         <button type="reset" className="setTextBtn" onClick={resetToDefault}>
           Reset
