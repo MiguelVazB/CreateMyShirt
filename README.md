@@ -1,5 +1,7 @@
 # CreateMyShirt - 3D Shirt Design Website
 
+Deployed Web App: https://createmyshirt.netlify.app/
+
 CreateMyShirt is a web application that allows users to design custom shirts by adding logos and text to a 3D model of a shirt. With an intuitive user interface and powerful features, users can create unique shirt designs and visualize them in real-time. The project is built using React, Vite, Three.js, and Framer Motion, providing a smooth and interactive experience.
 
 ## Table of Contents
@@ -29,6 +31,8 @@ Designing custom shirts can be a fun and creative process, but it can also be ch
 - Experience the 3D model in a canvas with lighting and shadows for a realistic view.
 
 ## Installation
+
+The website has been deployed: https://createmyshirt.netlify.app/
 
 To run CreateMyShirt locally on your machine, follow these steps:
 
