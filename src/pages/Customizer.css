@@ -53,3 +53,12 @@
 .tabImg:hover{
     scale: 1.5;
 }
+
+@media (orientation: landscape) and (max-height: 600px) {
+    .customToggles{
+        bottom: 0;
+    }
+    .customTogglesContainer{
+        bottom: 1rem;
+    }
+}
