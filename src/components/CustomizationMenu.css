@@ -9,7 +9,6 @@
     width: 10%;
     transition: width 0.15s ease-in-out;
     z-index: 2;
-    overflow: visible;
 }
 
 .customMenuContainer{
@@ -17,13 +16,6 @@
     justify-content: center;
     align-items: center;
     column-gap: 1rem;
-    overflow: visible;
-}
-
-@media (max-height: 500px) {
-    .customMenuContainer{
-        padding-top: 12rem;
-    }
 }
 
 .customTab{
@@ -211,4 +203,105 @@
     background-color: rgba(255,255,255,0.3) !important;
     border: 0 !important;
     box-shadow: none !important;
+}
+
+@media (orientation: landscape) and (max-height: 600px){
+    .customMenu{
+        width: min-content;
+    }
+    .customMenuContainer{
+        column-gap: 0.5rem;
+    }
+    .customTab{
+        padding: 0;
+    }
+    .customTab:hover{
+        padding: 0;
+    }
+    .customTab .tab:hover{
+        scale: 1;
+    }
+    .customTab .tab{
+        margin: 0.5rem 0;
+    }
+    .textChanger{
+        font-size: small;
+        row-gap: 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        padding: 0;
+        column-gap: 0.5rem;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 320px){
+    .customMenu{
+        width: min-content;
+    }
+    .customMenuContainer{
+        column-gap: 0.5rem;
+    }
+    .customTab{
+        padding: 0;
+    }
+    .customTab:hover{
+        padding: 0;
+    }
+    .customTab .tab:hover{
+        scale: 1;
+    }
+    .customTab .tab{
+        margin: 0;
+    }
+    .tab img{
+        width: 2rem;
+        height: 2rem;
+    }
+    .textChanger{
+        font-size: x-small;
+        row-gap: 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        padding: 0;
+        column-gap: 0.2rem;
+    }
+    .textChanger input{
+        width: 7rem;
+    }
+}
+
+@media (orientation: portrait) and (max-width: 320px){
+    .customMenu{
+        width: min-content;
+    }
+    .customMenuContainer{
+        column-gap: 0;
+    }
+    .customTab{
+        padding: 0;
+    }
+    .customTab:hover{
+        padding: 0;
+    }
+    .customTab .tab:hover{
+        scale: 1;
+    }
+    .customTab .tab{
+        margin: 0;
+    }
+    .tab img{
+        width: 2rem;
+        height: 2rem;
+    }
+    .textChanger{
+        font-size: x-small;
+        row-gap: 0;
+        padding: 0.1rem;
+        column-gap: 0.2rem;
+    }
+    .textChanger input{
+        width: 7rem;
+    }
 }
