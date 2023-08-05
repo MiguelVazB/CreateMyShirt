@@ -78,15 +78,18 @@ const CustomizationMenu = () => {
       try {
         setGeneratingImage(true);
 
-        const response = await fetch("https://createmyshirt.onrender.com", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            prompt: prompt,
-          }),
-        });
+        const response = await fetch(
+          "https://createmyshirt.onrender.com/api/v1/dalle",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              prompt: prompt,
+            }),
+          }
+        );
 
         const data = await response.json();
 
