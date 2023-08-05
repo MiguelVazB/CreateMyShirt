@@ -51,3 +51,20 @@
         font-size: clamp(1.1rem, 2.4vh, 5rem);
     }
 }
+
+@media (orientation: landscape) and (max-height: 350px) {
+    .headText{
+        font-size: clamp(1.4rem, 3.5vh, 5rem);
+    }
+    .threejsLogo{
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    .createButton{
+        padding: clamp(0.4rem, 1vh, 2rem);
+        font-size: clamp(0.9rem, 2vh, 2rem);
+    }
+    .description{
+        font-size: clamp(1.2rem, 2.4vh, 5rem);
+    }
+}
