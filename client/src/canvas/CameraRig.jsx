@@ -15,13 +15,40 @@ const CameraRig = ({ children }) => {
     };
   }, []);
 
+  const rotationScaleFactor = 0.004;
+  const threshold = 20;
+  let isMoving = false;
+
   const handleDeviceMotion = (event) => {
-    const rotationX = event.rotationRate.beta;
     const rotationY = event.rotationRate.gamma;
+    const rotationX = event.rotationRate.beta;
 
-    const rotationValues = [rotationY / 10, -rotationX / 5, 0];
+    if (Math.abs(rotationY) > threshold || Math.abs(rotationX) > threshold) {
+      isMoving = true;
 
-    easing.dampE(groupRef.current.rotation, rotationValues, 0.25, delta);
+      const rotationValues = [
+        rotationY * rotationScaleFactor,
+        -rotationX * rotationScaleFactor,
+        0,
+      ];
+
+      easing.dampE(
+        groupRef.current.rotation,
+        rotationValues,
+        0.25,
+        event.interval / 1000
+      );
+    } else {
+      if (isMoving) {
+        isMoving = false;
+        easing.dampE(
+          groupRef.current.rotation,
+          [0, 0, 0],
+          0.25,
+          event.interval / 1000
+        );
+      }
+    }
   };
 
   useFrame((state, delta) => {
@@ -32,7 +59,7 @@ const CameraRig = ({ children }) => {
     // position of shirt
     let shirtPosition = [-0.3, 0, 1.5];
     if (pageContext.intro) {
-      if (resizeShirtLaptopLarge) shirtPosition = [-0.22, 0, 1.8];
+      if (resizeShirtLaptopLarge) shirtPosition = [-0.22, 0, 1.72];
       if (resizeShirtLaptop) shirtPosition = [0, 0.15, 2];
       if (resizeShirtMobile) shirtPosition = [0, 0.3, 2.8];
     } else {
