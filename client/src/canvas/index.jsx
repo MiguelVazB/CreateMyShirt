@@ -13,7 +13,7 @@ const MainCanvas = () => {
       shadows
       camera={{ position: [0, 0, 0], fov: 30 }}
       gl={{
-        preserveDrawingBuffer: true,
+        preserveDrawingBuffer: false,
         useLegacyLights: false,
       }}
     >
