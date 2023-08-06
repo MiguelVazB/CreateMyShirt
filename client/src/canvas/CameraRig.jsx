@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
 import { PageContext } from "../context/PageContext";
@@ -7,6 +7,22 @@ const CameraRig = ({ children }) => {
   const pageContext = useContext(PageContext);
 
   const groupRef = useRef();
+
+  useEffect(() => {
+    window.addEventListener("devicemotion", handleDeviceMotion);
+    return () => {
+      window.removeEventListener("devicemotion", handleDeviceMotion);
+    };
+  }, []);
+
+  const handleDeviceMotion = (event) => {
+    const rotationX = event.rotationRate.beta;
+    const rotationY = event.rotationRate.gamma;
+
+    const rotationValues = [rotationY / 10, -rotationX / 5, 0];
+
+    easing.dampE(groupRef.current.rotation, rotationValues, 0.25, delta);
+  };
 
   useFrame((state, delta) => {
     const resizeShirtLaptopLarge = window.innerWidth <= 1690;
