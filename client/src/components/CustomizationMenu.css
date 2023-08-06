@@ -24,7 +24,9 @@
     align-items: center;
     justify-content: space-evenly;
     width: fit-content;
-    background-color: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     padding: 0.5rem;
     transition: padding 0.2s ease-in-out;
@@ -56,14 +58,19 @@
 }
 
 .colorPickerContainer .sketch-picker{
-    background-color: rgba(255,255,255,0.2) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(2px) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+    /* background-color: rgba(255,255,255,0.2) !important; */
     border-radius: 10px !important;
     border: 0 !important;
     box-shadow: none !important;
 }
 
 .fileUploadContainer{
-    background-color: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     flex: 1;
     height: 250px;
@@ -91,7 +98,6 @@
 
 .fileContainer p{
     margin: 0;
-    color: rgb(94, 94, 94);
     word-break: break-all;
 }   
 
@@ -115,9 +121,24 @@
 }
 
 .aiChanger, .aiChangerTextArea{
-    background-color: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     border: 0;
     border-radius: 10px;
+}
+
+.aiChangerTextArea::placeholder {
+    color: black;
+    opacity: 1; /* Firefox */
+}
+  
+.aiChangerTextArea:-ms-input-placeholder {
+    color: black;
+}
+  
+.aiChangerTextArea::-ms-input-placeholder {
+    color: black;
 }
 
 .aiButtons{
@@ -142,7 +163,9 @@
 }
 
 .textChanger{
-    background-color: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     border: 0;
     display: flex;
@@ -190,7 +213,9 @@
 }
 
 .logoPosChanger{
-    background-color: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     border: 0;
     padding: 1rem;
@@ -202,7 +227,9 @@
 }
 
 .chrome-picker{
-    background-color: rgba(255,255,255,0.3) !important;
+    background: #ffffff33 !important;
+    backdrop-filter: blur(2px) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
     border: 0 !important;
     box-shadow: none !important;
 }
