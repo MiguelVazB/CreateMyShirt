@@ -1,7 +1,7 @@
-import { useState } from "react";
-import Canvas from "./canvas";
-import Customizer from "./pages/Customizer";
-import Home from "./pages/Home";
+import { useState, lazy, Suspense } from "react";
+const Canvas = lazy(() => import("./canvas"));
+const Customizer = lazy(() => import("./pages/Customizer"));
+const Home = lazy(() => import("./pages/Home"));
 import { PageContext } from "./context/PageContext";
 
 function App() {
@@ -62,7 +62,9 @@ function App() {
     >
       <main>
         <Home />
-        <Canvas />
+        <Suspense fallback={<div className="loadingCanvas"></div>}>
+          <Canvas />
+        </Suspense>
         <Customizer />
       </main>
     </PageContext.Provider>
