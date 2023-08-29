@@ -45,7 +45,7 @@ const TextChanger = () => {
   }
 
   const handleChangeComplete = (color) => {
-    pageContext.setTextColor(color.hsl);
+    pageContext.setTextColor(color.hex);
   };
 
   useEffect(() => {
