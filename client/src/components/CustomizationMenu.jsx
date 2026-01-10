@@ -7,6 +7,7 @@ import TextChanger from "./TextChanger";
 import PositionChanger from "./PositionChanger";
 import Tab from "./Tab";
 import "./CustomizationMenu.css";
+import { DALLE_API_URL } from "../utils/api";
 
 const CustomizationMenu = () => {
   const pageContext = useContext(PageContext);
@@ -79,7 +80,7 @@ const CustomizationMenu = () => {
         setGeneratingImage(true);
 
         const response = await fetch(
-          "https://createmyshirt.onrender.com/api/v1/dalle",
+          DALLE_API_URL,
           {
             method: "POST",
             headers: {
