@@ -1,19 +1,20 @@
 import React, { useContext } from "react";
-import { HexColorPicker } from "react-colorful";
+import { SketchPicker } from "react-color";
 import { PageContext } from "../context/PageContext";
 
 const ColorChanger = () => {
   const pageContext = useContext(PageContext);
 
-  const handleChange = (color) => {
-    pageContext.setShirtColor(color);
+  const handleChangeComplete = (color) => {
+    pageContext.setShirtColor(color.hex);
   };
 
   return (
     <div className="colorPickerContainer">
-      <HexColorPicker
+      <SketchPicker
         color={pageContext.shirtColor}
-        onChange={handleChange}
+        disableAlpha
+        onChange={handleChangeComplete}
       />
     </div>
   );
