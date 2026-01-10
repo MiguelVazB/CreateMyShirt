@@ -1,19 +1,16 @@
 import React, { useRef, useContext, useState, useEffect } from "react";
 import { PageContext } from "../context/PageContext";
-import { ChromePicker } from "react-color";
-import FontPicker from "font-picker-react";
+import { HexColorPicker } from "react-colorful";
+import GoogleFontPicker from "./GoogleFontPicker";
 import PositionChanger from "./PositionChanger";
 
 const TextChanger = () => {
   const pageContext = useContext(PageContext);
-  const inputRef = useRef(null);
+  const [inputText, setInputText] = useState("");
   const [currentFont, setCurrentFont] = useState("Open Sans");
 
-  const [apiKey, setApiKey] = useState("");
-  const [apiKeyReady, setApiKeyReady] = useState(false);
-
-  function handleClick() {
-    let inputText = inputRef.current.value;
+  // Update text overlay in real-time whenever text, font, or color changes
+  useEffect(() => {
     if (inputText.length > 0) {
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
@@ -22,18 +19,17 @@ const TextChanger = () => {
       let fontSize = 50;
       ctx.font = `${fontSize}px ${currentFont}`;
       ctx.fillStyle = pageContext.textColor;
-      const text = inputRef.current.value;
-      const textWidth = ctx.measureText(text).width;
+      const textWidth = ctx.measureText(inputText).width;
       const x = (canvas.width - textWidth) / 2;
       const y = (canvas.height + fontSize) / 2;
-      ctx.fillText(text, x, y);
+      ctx.fillText(inputText, x, y);
       const dataUrl = canvas.toDataURL();
       pageContext.setTextOverlay(dataUrl);
       pageContext.setIsTextOverlay(true);
     } else {
-      alert("Enter a text!");
+      pageContext.setIsTextOverlay(false);
     }
-  }
+  }, [inputText, currentFont, pageContext.textColor]);
 
   function resetToDefault() {
     pageContext.setTextPos({
@@ -44,49 +40,28 @@ const TextChanger = () => {
     });
   }
 
-  const handleChangeComplete = (color) => {
-    pageContext.setTextColor(color.hex);
-  };
-
-  useEffect(() => {
-    setApiKey(import.meta.env.VITE_API_KEY);
-  }, []);
-
-  useEffect(() => {
-    if (apiKey) setApiKeyReady(true);
-  }, [apiKey]);
-
   return (
     <div className="textChanger">
       <label htmlFor="textEntered">Text to put on the shirt:</label>
       <input
-        ref={inputRef}
         id="textEntered"
         type="text"
         placeholder="Enter text..."
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
       />
-      {apiKeyReady && (
-        <FontPicker
-          apiKey={apiKey}
-          activeFontFamily={currentFont}
-          onChange={(nextFont) => setCurrentFont(nextFont.family)}
-        />
-      )}
+      <GoogleFontPicker
+        activeFontFamily={currentFont}
+        onChange={(nextFont) => setCurrentFont(nextFont.family)}
+      />
       <PositionChanger />
-      <ChromePicker
+      <HexColorPicker
         color={pageContext.textColor}
-        width="fit-content"
-        disableAlpha
-        onChange={handleChangeComplete}
+        onChange={pageContext.setTextColor}
       />
-      <div className="textChangerButtons">
-        <button type="reset" className="setTextBtn" onClick={resetToDefault}>
-          Reset
-        </button>
-        <button className="setTextBtn" onClick={handleClick}>
-          Set Text
-        </button>
-      </div>
+      <button type="reset" className="setTextBtn" onClick={resetToDefault}>
+        Reset Position
+      </button>
     </div>
   );
 };
