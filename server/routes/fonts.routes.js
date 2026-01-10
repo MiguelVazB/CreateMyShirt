@@ -13,7 +13,7 @@ router.route('/').get(async (req, res) => {
             return res.status(503).json({ message: "Google Fonts API key not configured" });
         }
 
-        const response = await fetch(
+        const response = await globalThis.fetch(
             `https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=${apiKey}`
         );
 

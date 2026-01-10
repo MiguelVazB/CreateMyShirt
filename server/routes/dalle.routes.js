@@ -8,6 +8,7 @@ const router = express.Router();
 
 const openAI = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
+    fetch: globalThis.fetch,
 });
 
 router.route('/').get((req, res) => {
