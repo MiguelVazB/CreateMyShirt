@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { AccumulativeShadows, RandomizedLight } from "@react-three/drei";
 
 const Background = () => {
@@ -11,22 +11,22 @@ const Background = () => {
       temporal
       frames={60}
       alphaTest={0.85}
-      scale={10}
+      scale={2.8}
       rotation={[Math.PI / 2, 0, 0]}
     >
       <RandomizedLight
-        amount={1}
+        amount={2}
         radius={9}
-        intensity={0.9}
+        intensity={1.2}
         ambient={0.25}
-        position={[5, 10, -10]}
+        position={[5, 5, -10]}
       />
       <RandomizedLight
-        amount={1}
+        amount={2}
         radius={5}
-        intensity={0.8}
-        ambient={0.5}
-        position={[-5, 5, -10]}
+        intensity={1}
+        ambient={0.55}
+        position={[-5, 5, -9]}
       />
     </AccumulativeShadows>
   );
