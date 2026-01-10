@@ -1,8 +1,9 @@
-import { useState, lazy, Suspense } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 const Canvas = lazy(() => import("./canvas"));
 const Customizer = lazy(() => import("./pages/Customizer"));
 const Home = lazy(() => import("./pages/Home"));
 import { PageContext } from "./context/PageContext";
+import { DALLE_API_URL } from "./utils/api";
 
 function App() {
   const [intro, setIntro] = useState(true);
@@ -30,6 +31,13 @@ function App() {
     size: 0.15,
     rotation: 0,
   });
+
+  useEffect(() => {
+    // Warm up the backend (helps with Render cold starts).
+    const controller = new AbortController();
+    fetch(DALLE_API_URL, { signal: controller.signal }).catch(() => {});
+    return () => controller.abort();
+  }, []);
 
   return (
     <PageContext.Provider
