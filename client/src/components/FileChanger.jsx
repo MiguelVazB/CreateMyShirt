@@ -27,7 +27,7 @@ const FileChanger = () => {
         } else {
           pageContext.setLogoTexture((prev) => ({
             logo: prev.logo,
-            logoName: "Selected file is not an image",
+            logoName: "Invalid file type",
           }));
         }
       });
