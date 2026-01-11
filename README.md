@@ -19,16 +19,37 @@ Designing custom shirts can be a fun and creative process, but it can also be ch
 
 ## Features
 
-- Add logos and text to a 3D model of a shirt.
-- Change the color of the shirt using a color picker in the menu.
-- Upload a logo from the user's device to add to the shirt.
-- Generate AI-based logos using DALL-E by providing text descriptions.
-- Adjust the position, size, and rotation of logos using sliders and number boxes.
-- Access a variety of fonts through the Google Fonts API to customize text.
-- Modify the position, size, and rotation of the text.
-- Change the color of the text.
-- Toggle the visibility of logos, full shirt design, and text using bottom-center toggles.
-- Experience the 3D model in a canvas with lighting and shadows for a realistic view.
+### Shirt Customization
+- **Change shirt color** - Use a color picker to select from any color for the shirt background.
+- **3D visualization** - Real-time 3D model rendering with lighting and shadows for a realistic preview.
+
+### Logo Features
+- **Upload custom logos** - Upload image files from your device to use as logos.
+- **AI-generated logos** - Generate unique logos using DALL-E AI by providing text descriptions (up to 1000 characters).
+- **Logo or full design** - Apply logos as small badges or as full shirt designs.
+- **Position control** - Adjust logo position (x, y), size, and rotation using sliders and number boxes.
+- **Reset position** - Quickly reset logo to default position with one click.
+
+### Text Features
+- **Add custom text** - Type any text to overlay on the shirt.
+- **Google Fonts integration** - Choose from hundreds of fonts through the Google Fonts API.
+- **Text color picker** - Customize text color to match your design.
+- **Position control** - Adjust text position (x, y), size, and rotation using sliders and number boxes.
+- **Reset position** - Quickly reset text to default position with one click.
+- **Real-time preview** - Text updates instantly as you type or change fonts.
+
+### Design Management
+- **Save designs** - Save up to 10 custom designs to local storage with custom names.
+- **Load designs** - Reload previously saved designs to continue editing.
+- **Update designs** - Modify and update existing saved designs.
+- **Delete designs** - Remove old designs to make room for new ones.
+- **Design tracking** - Visual indicator shows when the current design has been saved.
+
+### Toggle Controls
+- **Logo visibility** - Toggle logo/badge display on or off.
+- **Full design visibility** - Toggle full shirt design on or off.
+- **Text visibility** - Toggle text overlay on or off.
+- **Visual feedback** - Active toggles are highlighted for easy identification.
 
 ## Installation
 
