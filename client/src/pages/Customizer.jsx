@@ -8,6 +8,42 @@ import { fadeAnimation, slideAnimation } from "../utils/animations";
 
 const Customizer = memo(() => {
   const pageContext = useContext(PageContext);
+  const [showSaveDialog, setShowSaveDialog] = React.useState(false);
+  const [designName, setDesignName] = React.useState('');
+  const [designSaved, setDesignSaved] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState('');
+
+  // Reset designSaved when any design property changes
+  React.useEffect(() => {
+    setDesignSaved(false);
+  }, [
+    pageContext.shirtColor,
+    pageContext.textColor,
+    pageContext.isFullTexture,
+    pageContext.isLogoTexture,
+    pageContext.isTextOverlay,
+    pageContext.logoTexture,
+    pageContext.textOverlay,
+    pageContext.textPos,
+    pageContext.logoPos,
+    pageContext.generatedImage,
+  ]);
+
+  const handleSave = (override = false) => {
+    const nameToSave = override ? pageContext.currentLoadedDesign.name : designName.trim();
+    if (nameToSave) {
+      const result = pageContext.saveDesign(nameToSave, override);
+      if (result.success) {
+        setDesignName('');
+        setShowSaveDialog(false);
+        setDesignSaved(true);
+        alert(result.overridden ? 'Design updated successfully!' : 'Design saved successfully!');
+      } else if (result.error === 'duplicate') {
+        setErrorMessage('A design with this name already exists!');
+      }
+    }
+  };
+
   return (
     <AnimatePresence>
       {!pageContext.intro && (
@@ -26,7 +62,79 @@ const Customizer = memo(() => {
             >
               Go Back
             </button>
+            <button
+              className="saveDesignButton"
+              onClick={() => {
+                setShowSaveDialog(true);
+                setErrorMessage('');
+              }}
+              disabled={designSaved}
+              title={designSaved ? 'Design already saved' : 'Save your design'}
+            >
+              {designSaved ? '✓ Saved' : 'Save Design'}
+            </button>
           </motion.div>
+
+          {showSaveDialog && (
+            <motion.div 
+              className="saveDialog"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <div className="saveDialogContent">
+                <h3>Save Your Design</h3>
+                {pageContext.currentLoadedDesign && (
+                  <div style={{ marginBottom: '1rem', padding: '0.5rem', background: '#f0f0f0', borderRadius: '5px', fontSize: '0.9rem' }}>
+                    Currently editing: <strong>{pageContext.currentLoadedDesign.name}</strong>
+                  </div>
+                )}
+                {errorMessage && (
+                  <div style={{ color: '#C44536', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
+                    {errorMessage}
+                  </div>
+                )}
+                {pageContext.currentLoadedDesign && (
+                  <button 
+                    className="saveDialogSaveBtn"
+                    onClick={() => handleSave(true)}
+                    style={{ width: '100%', marginBottom: '1rem' }}
+                  >
+                    Update "{pageContext.currentLoadedDesign.name}"
+                  </button>
+                )}
+                <div style={{ marginBottom: '0.5rem', fontSize: '0.9rem', color: '#666' }}>
+                  {pageContext.currentLoadedDesign ? 'Or save as a new design:' : 'Enter a name for your design:'}
+                </div>
+                <input
+                  type="text"
+                  className="saveDialogInput"
+                  placeholder="Enter design name..."
+                  value={designName}
+                  onChange={(e) => {
+                    setDesignName(e.target.value);
+                    setErrorMessage('');
+                  }}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSave(false)}
+                  autoFocus={!pageContext.currentLoadedDesign}
+                />
+                <div className="saveDialogActions">
+                  <button 
+                    className="saveDialogCancelBtn"
+                    onClick={() => setShowSaveDialog(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button 
+                    className="saveDialogSaveBtn"
+                    onClick={() => handleSave(false)}
+                    disabled={!designName.trim()}
+                  >
+                    Save as New
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          )}
 
           <motion.div
             className="customTogglesContainer"
