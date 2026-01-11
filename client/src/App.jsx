@@ -49,44 +49,62 @@ function App() {
 
   // Save current design to localStorage
   const saveDesign = (designName, overrideExisting = false) => {
-    const savedDesigns = JSON.parse(localStorage.getItem('savedDesigns') || '[]');
-    
-    const design = {
-      name: designName,
-      timestamp: Date.now(),
-      shirtColor,
-      textColor,
-      isFullTexture,
-      isLogoTexture,
-      isTextOverlay,
-      logoTexture: logoTexture.logo.startsWith('data:') ? logoTexture.logo : null, // Only save base64 images
-      textOverlay: textOverlay.startsWith('data:') ? textOverlay : null,
-      textPos,
-      logoPos,
-      generatedImage: generatedImage.startsWith('data:') ? generatedImage : null,
-    };
+    try {
+      const savedDesigns = JSON.parse(localStorage.getItem('savedDesigns') || '[]');
+      
+      const design = {
+        name: designName,
+        timestamp: Date.now(),
+        shirtColor,
+        textColor,
+        isFullTexture,
+        isLogoTexture,
+        isTextOverlay,
+        logoTexture: logoTexture.logo.startsWith('data:') ? logoTexture.logo : null, // Only save base64 images
+        textOverlay: textOverlay.startsWith('data:') ? textOverlay : null,
+        textPos,
+        logoPos,
+        generatedImage: generatedImage.startsWith('data:') ? generatedImage : null,
+      };
 
-    if (overrideExisting && currentLoadedDesign) {
-      // Override the existing design
-      const index = savedDesigns.findIndex(d => d.timestamp === currentLoadedDesign.timestamp);
-      if (index !== -1) {
-        design.timestamp = currentLoadedDesign.timestamp; // Keep original timestamp
-        savedDesigns[index] = design;
-        localStorage.setItem('savedDesigns', JSON.stringify(savedDesigns));
-        return { success: true, overridden: true };
+      if (overrideExisting && currentLoadedDesign) {
+        // Override the existing design
+        const index = savedDesigns.findIndex(d => d.timestamp === currentLoadedDesign.timestamp);
+        if (index !== -1) {
+          design.timestamp = currentLoadedDesign.timestamp; // Keep original timestamp
+          savedDesigns[index] = design;
+          try {
+            localStorage.setItem('savedDesigns', JSON.stringify(savedDesigns));
+            return { success: true, overridden: true };
+          } catch (quotaError) {
+            return { success: false, error: 'quota' };
+          }
+        }
       }
-    }
-    
-    // Check if a design with this name already exists
-    const duplicate = savedDesigns.find(d => d.name.toLowerCase() === designName.toLowerCase());
-    if (duplicate) {
-      return { success: false, error: 'duplicate' };
-    }
+      
+      // Check if a design with this name already exists
+      const duplicate = savedDesigns.find(d => d.name.toLowerCase() === designName.toLowerCase());
+      if (duplicate) {
+        return { success: false, error: 'duplicate' };
+      }
 
-    savedDesigns.push(design);
-    localStorage.setItem('savedDesigns', JSON.stringify(savedDesigns));
-    setCurrentLoadedDesign(design);
-    return { success: true };
+      // Limit to 10 saved designs to prevent quota issues
+      if (savedDesigns.length >= 10) {
+        return { success: false, error: 'limit' };
+      }
+
+      savedDesigns.push(design);
+      try {
+        localStorage.setItem('savedDesigns', JSON.stringify(savedDesigns));
+        setCurrentLoadedDesign(design);
+        return { success: true };
+      } catch (quotaError) {
+        return { success: false, error: 'quota' };
+      }
+    } catch (error) {
+      console.error('Error saving design:', error);
+      return { success: false, error: 'unknown' };
+    }
   };
 
   // Load a design from localStorage
@@ -96,15 +114,26 @@ function App() {
     setIsFullTexture(design.isFullTexture);
     setIsLogoTexture(design.isLogoTexture);
     setIsTextOverlay(design.isTextOverlay);
+    
+    // Load logo texture
     if (design.logoTexture && design.logoTexture.startsWith('data:')) {
       setLogoTexture({ logo: design.logoTexture, logoName: 'Saved Design' });
     }
+    
+    // Load text overlay
     if (design.textOverlay && design.textOverlay.startsWith('data:')) {
       setTextOverlay(design.textOverlay);
     }
+    
+    // Load generated image and update logoTexture if it was an AI-generated design
     if (design.generatedImage && design.generatedImage.startsWith('data:')) {
       setGeneratedImage(design.generatedImage);
+      // If no separate logo was saved, use the generated image as the logo
+      if (!design.logoTexture && design.generatedImage) {
+        setLogoTexture({ logo: design.generatedImage, logoName: 'AI' });
+      }
     }
+    
     setTextPos(design.textPos);
     setLogoPos(design.logoPos);
     setCurrentLoadedDesign(design);
