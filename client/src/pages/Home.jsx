@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PageContext } from "../context/PageContext";
 import "./Home.css";
@@ -12,6 +12,24 @@ import {
 
 const Home = () => {
   const pageContext = React.useContext(PageContext);
+  const [savedDesigns, setSavedDesigns] = useState([]);
+  const [showSavedDesigns, setShowSavedDesigns] = useState(false);
+
+  useEffect(() => {
+    if (pageContext.intro) {
+      setSavedDesigns(pageContext.getSavedDesigns());
+    }
+  }, [pageContext.intro]);
+
+  const handleLoadDesign = (design) => {
+    pageContext.loadDesign(design);
+  };
+
+  const handleDeleteDesign = (timestamp) => {
+    pageContext.deleteDesign(timestamp);
+    setSavedDesigns(pageContext.getSavedDesigns());
+  };
+
   return (
     <AnimatePresence>
       {pageContext.intro && (
@@ -46,6 +64,47 @@ const Home = () => {
               >
                 Create My Shirt
               </button>
+              
+              {savedDesigns.length > 0 && (
+                <button
+                  className="loadDesignsButton"
+                  onClick={() => setShowSavedDesigns(!showSavedDesigns)}
+                >
+                  {showSavedDesigns ? 'Hide' : 'Load'} Saved Designs ({savedDesigns.length})
+                </button>
+              )}
+
+              {showSavedDesigns && savedDesigns.length > 0 && (
+                <motion.div 
+                  className="savedDesignsList"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                >
+                  {savedDesigns.map((design) => (
+                    <div key={design.timestamp} className="savedDesignItem">
+                      <div className="designInfo">
+                        <strong>{design.name}</strong>
+                        <small>{new Date(design.timestamp).toLocaleDateString()}</small>
+                      </div>
+                      <div className="designActions">
+                        <button 
+                          className="loadBtn"
+                          onClick={() => handleLoadDesign(design)}
+                        >
+                          Load
+                        </button>
+                        <button 
+                          className="deleteBtn"
+                          onClick={() => handleDeleteDesign(design.timestamp)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
             </motion.div>
           </motion.div>
         </motion.section>
