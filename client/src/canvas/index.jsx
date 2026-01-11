@@ -22,7 +22,7 @@ const MainCanvas = () => {
       }}
     >
       <ambientLight intensity={0.5} />
-      <Environment preset="city" />
+      <Environment preset="sunset" />
 
       <CameraRig>
         <Background />
