@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PageContext } from "../context/PageContext";
 import CustomizationMenu from "../components/CustomizationMenu";
@@ -6,7 +6,7 @@ import "./Customizer.css";
 
 import { fadeAnimation, slideAnimation } from "../utils/animations";
 
-const Customizer = () => {
+const Customizer = memo(() => {
   const pageContext = useContext(PageContext);
   return (
     <AnimatePresence>
@@ -72,6 +72,6 @@ const Customizer = () => {
       )}
     </AnimatePresence>
   );
-};
+});
 
 export default Customizer;
