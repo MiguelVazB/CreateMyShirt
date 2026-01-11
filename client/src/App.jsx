@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo, lazy, Suspense } from "react";
 const Canvas = lazy(() => import("./canvas"));
 const Customizer = lazy(() => import("./pages/Customizer"));
-const Home = lazy(() => import("./pages/Home"));
+import Home from "./pages/Home"; // Don't lazy load Home - it should render immediately
 import { PageContext } from "./context/PageContext";
 import { DALLE_API_URL } from "./utils/api";
 
@@ -33,10 +33,17 @@ function App() {
   });
 
   useEffect(() => {
-    // Warm up the backend (helps with Render cold starts).
-    const controller = new AbortController();
-    fetch(DALLE_API_URL, { signal: controller.signal }).catch(() => {});
-    return () => controller.abort();
+    // Warm up the backend in the background without blocking render
+    const warmupBackend = () => {
+      fetch(DALLE_API_URL, { signal: AbortSignal.timeout(5000) }).catch(() => {});
+    };
+    
+    // Use requestIdleCallback or setTimeout to avoid blocking initial render
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(warmupBackend);
+    } else {
+      setTimeout(warmupBackend, 1000);
+    }
   }, []);
 
   const contextValue = useMemo(() => ({
@@ -83,7 +90,23 @@ function App() {
     <PageContext.Provider value={contextValue}>
       <main>
         <Home />
-        <Suspense fallback={<div className="loadingCanvas"></div>}>
+        <Suspense fallback={
+          <div className="loadingCanvas" style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            color: 'white',
+            fontSize: '1.2rem'
+          }}>
+            Loading 3D Canvas...
+          </div>
+        }>
           <Canvas />
         </Suspense>
         <Customizer />
