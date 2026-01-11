@@ -31,6 +31,7 @@ function App() {
     size: 0.15,
     rotation: 0,
   });
+  const [currentLoadedDesign, setCurrentLoadedDesign] = useState(null);
 
   useEffect(() => {
     // Warm up the backend in the background without blocking render
@@ -45,6 +46,76 @@ function App() {
       setTimeout(warmupBackend, 1000);
     }
   }, []);
+
+  // Save current design to localStorage
+  const saveDesign = (designName, overrideExisting = false) => {
+    const savedDesigns = JSON.parse(localStorage.getItem('savedDesigns') || '[]');
+    
+    const design = {
+      name: designName,
+      timestamp: Date.now(),
+      shirtColor,
+      textColor,
+      isFullTexture,
+      isLogoTexture,
+      isTextOverlay,
+      logoTexture: logoTexture.logo.startsWith('data:') ? logoTexture : null, // Only save base64 images
+      textOverlay: textOverlay.startsWith('data:') ? textOverlay : null,
+      textPos,
+      logoPos,
+      generatedImage: generatedImage.startsWith('data:') ? generatedImage : null,
+    };
+
+    if (overrideExisting && currentLoadedDesign) {
+      // Override the existing design
+      const index = savedDesigns.findIndex(d => d.timestamp === currentLoadedDesign.timestamp);
+      if (index !== -1) {
+        design.timestamp = currentLoadedDesign.timestamp; // Keep original timestamp
+        savedDesigns[index] = design;
+        localStorage.setItem('savedDesigns', JSON.stringify(savedDesigns));
+        return { success: true, overridden: true };
+      }
+    }
+    
+    // Check if a design with this name already exists
+    const duplicate = savedDesigns.find(d => d.name.toLowerCase() === designName.toLowerCase());
+    if (duplicate) {
+      return { success: false, error: 'duplicate' };
+    }
+
+    savedDesigns.push(design);
+    localStorage.setItem('savedDesigns', JSON.stringify(savedDesigns));
+    setCurrentLoadedDesign(design);
+    return { success: true };
+  };
+
+  // Load a design from localStorage
+  const loadDesign = (design) => {
+    setShirtColor(design.shirtColor);
+    setTextColor(design.textColor);
+    setIsFullTexture(design.isFullTexture);
+    setIsLogoTexture(design.isLogoTexture);
+    setIsTextOverlay(design.isTextOverlay);
+    if (design.logoTexture) setLogoTexture({ logo: design.logoTexture, logoName: 'Saved' });
+    if (design.textOverlay) setTextOverlay(design.textOverlay);
+    if (design.generatedImage) setGeneratedImage(design.generatedImage);
+    setTextPos(design.textPos);
+    setLogoPos(design.logoPos);
+    setCurrentLoadedDesign(design);
+    setIntro(false);
+  };
+
+  // Delete a design
+  const deleteDesign = (timestamp) => {
+    const savedDesigns = JSON.parse(localStorage.getItem('savedDesigns') || '[]');
+    const filtered = savedDesigns.filter(d => d.timestamp !== timestamp);
+    localStorage.setItem('savedDesigns', JSON.stringify(filtered));
+  };
+
+  // Get all saved designs
+  const getSavedDesigns = () => {
+    return JSON.parse(localStorage.getItem('savedDesigns') || '[]');
+  };
 
   const contextValue = useMemo(() => ({
     intro,
@@ -71,6 +142,11 @@ function App() {
     setLogoPos,
     textColor,
     setTextColor,
+    saveDesign,
+    loadDesign,
+    deleteDesign,
+    getSavedDesigns,
+    currentLoadedDesign,
   }), [
     intro,
     isFullTexture,
@@ -84,6 +160,7 @@ function App() {
     textPos,
     logoPos,
     textColor,
+    currentLoadedDesign,
   ]);
 
   return (
