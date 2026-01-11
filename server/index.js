@@ -8,13 +8,17 @@ dotenv.config();
 
 const app = express();
 
-// CORS configuration - allow both development and production
-const allowedOrigins = [
-    'https://createmyshirt.netlify.app'
-];
+// CORS configuration - allow only frontend origins
+const allowedOrigins = ['https://createmyshirt.netlify.app'];
+
 const corsOptions = {
     origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
+        // Reject requests without an origin (e.g., Postman, curl)
+        if (!origin) {
+            callback(new Error('Not allowed by CORS - No origin header'));
+            return;
+        }
+        if (allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
