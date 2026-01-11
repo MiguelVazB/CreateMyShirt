@@ -6,7 +6,7 @@ import { Decal, useGLTF, useTexture } from "@react-three/drei";
 
 const Shirt = () => {
   const pageContext = useContext(PageContext);
-  const { nodes, materials } = useGLTF("./tshirt.glb");
+  const { nodes, materials } = useGLTF("./tshirt.glb", true); // Enable caching
 
   const logoTexture = useTexture(pageContext.logoTexture.logo);
   const textOverlay = useTexture(pageContext.textOverlay);
