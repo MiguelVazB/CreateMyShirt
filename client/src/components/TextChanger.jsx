@@ -60,7 +60,7 @@ const TextChanger = () => {
         onChange={pageContext.setTextColor}
       />
       <button type="reset" className="setTextBtn" onClick={resetToDefault}>
-        Reset Position
+        Reset Text Position
       </button>
     </div>
   );
