@@ -1,4 +1,5 @@
 .home{
+    margin-top: 2rem;
     padding: clamp(0.5rem, 1vw, 2rem);
     position: absolute;
     z-index: 1;
