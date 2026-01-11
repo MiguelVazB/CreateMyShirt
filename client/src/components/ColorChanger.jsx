@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import { HexColorPicker } from "react-colorful";
 import { PageContext } from "../context/PageContext";
 
-const ColorChanger = () => {
+const ColorChanger = memo(() => {
   const pageContext = useContext(PageContext);
 
   return (
@@ -13,6 +13,6 @@ const ColorChanger = () => {
       />
     </div>
   );
-};
+});
 
 export default ColorChanger;
