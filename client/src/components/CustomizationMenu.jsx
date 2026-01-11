@@ -94,13 +94,27 @@ const CustomizationMenu = () => {
 
         const data = await response.json();
 
+        // Check if the response was successful
+        if (!response.ok) {
+          throw new Error(data.message || `Server error: ${response.status}`);
+        }
+
+        // Validate that photo data exists
+        if (!data.photo) {
+          throw new Error("No image data received from server");
+        }
+
         pageContext.setLogoTexture({
           logo: `data:image/png;base64,${data.photo}`,
           logoName: "AI",
         });
         pageContext.setGeneratedImage(`data:image/png;base64,${data.photo}`);
       } catch (error) {
-        alert(error);
+        // Only log errors in development
+        if (import.meta.env.DEV) {
+          console.error("AI Image Generation Error:", error);
+        }
+        alert(`Failed to generate image: ${error.message}`);
       } finally {
         setGeneratingImage(false);
         setActiveTab("");
