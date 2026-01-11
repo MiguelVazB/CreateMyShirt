@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { easing } from "maath";
 import { PageContext } from "../context/PageContext";
 import { useFrame } from "@react-three/fiber";
@@ -10,6 +10,14 @@ const Shirt = () => {
 
   const logoTexture = useTexture(pageContext.logoTexture.logo);
   const textOverlay = useTexture(pageContext.textOverlay);
+
+  // Dispose textures on unmount to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      logoTexture?.dispose();
+      textOverlay?.dispose();
+    };
+  }, [logoTexture, textOverlay]);
 
   useFrame((state, delta) =>
     easing.dampC(materials.lambert1.color, pageContext.shirtColor, 0.25, delta)
