@@ -40,6 +40,12 @@ const Customizer = memo(() => {
         alert(result.overridden ? 'Design updated successfully!' : 'Design saved successfully!');
       } else if (result.error === 'duplicate') {
         setErrorMessage('A design with this name already exists!');
+      } else if (result.error === 'quota') {
+        setErrorMessage('Storage quota exceeded! Try deleting some old designs or use smaller images.');
+      } else if (result.error === 'limit') {
+        setErrorMessage('Maximum 10 designs allowed. Please delete some old designs first.');
+      } else {
+        setErrorMessage('Failed to save design. Please try again.');
       }
     }
   };
