@@ -142,12 +142,8 @@ const CustomizationMenu = () => {
               setActiveTab((prev) =>
                 prev === "fileChanger" ? "" : "fileChanger"
               );
-              pageContext.currentFileUploaded
-                ? pageContext.setLogoTexture({
-                    logo: pageContext.currentFileUploaded.logo,
-                    logoName: pageContext.currentFileUploaded.logoName,
-                  })
-                : "";
+              // Don't automatically change the logo when opening the tab
+              // The logo should only change when a new file is actually uploaded
             }}
           />
           <Tab
@@ -155,12 +151,8 @@ const CustomizationMenu = () => {
             isActive={activeTab === "aiChanger"}
             handleClick={() => {
               setActiveTab((prev) => (prev === "aiChanger" ? "" : "aiChanger"));
-              pageContext.generatedImage
-                ? pageContext.setLogoTexture({
-                    logo: pageContext.generatedImage,
-                    logoName: "AI",
-                  })
-                : "";
+              // Don't automatically change the logo when opening the tab
+              // The logo should only change when AI generates a new image
             }}
           />
           <Tab
