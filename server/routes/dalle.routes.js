@@ -52,6 +52,11 @@ router.route('/').post(async (req, res) => {
         console.error('DALL-E error:', error.message);
         
         // Handle specific OpenAI errors
+        if (error.status === 400) {
+            return res.status(400).json({ 
+                message: "Your prompt was rejected by the safety system. Please try a different description." 
+            });
+        }
         if (error.status === 401) {
             return res.status(503).json({ message: "OpenAI authentication failed" });
         }
