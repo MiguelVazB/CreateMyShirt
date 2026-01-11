@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PageContext } from "../context/PageContext";
 import "./Home.css";
@@ -54,4 +54,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default memo(Home);
