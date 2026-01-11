@@ -40,6 +40,9 @@
     cursor: pointer;
     margin: 1rem 0;
     transition: scale 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .customTab .tab:hover{
@@ -128,6 +131,42 @@
     border-radius: 10px;
 }
 
+.aiChanger {
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ai-helper-text {
+    margin: 0;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    color: #333;
+    text-align: center;
+}
+
+.ai-char-counter {
+    font-size: 0.7rem;
+    color: #666;
+    text-align: right;
+    margin-top: -0.3rem;
+}
+
+.ai-mobile-hint {
+    font-size: 0.7rem;
+    color: #555;
+    text-align: center;
+    display: block;
+    margin: 0.2rem 0;
+}
+
+.aiChangerTextArea {
+    padding: 0.5rem;
+    resize: vertical;
+    font-family: inherit;
+}
+
 .aiChangerTextArea::placeholder {
     color: black;
     opacity: 1; /* Firefox */
@@ -152,8 +191,20 @@
     flex: 1;
     border-radius: 10px;
     border: 0;
-    padding: 0.3rem;
+    padding: 0.5rem;
     cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.aiButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.aiButton:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .aiButtonSelected{
@@ -333,4 +384,63 @@
     .textChanger input{
         width: 7rem;
     }
+}
+
+/* Tab label styles */
+.tab-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-top: 0.3rem;
+    text-align: center;
+    color: #333;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.tab:hover .tab-label {
+    opacity: 1;
+}
+
+.tab-active {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    padding: 0.3rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tab-active .tab-label {
+    opacity: 1;
+    color: #000;
+}
+
+/* AI Loading overlay */
+.ai-loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.ai-loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

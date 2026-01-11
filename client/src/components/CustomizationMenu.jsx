@@ -53,7 +53,7 @@ const CustomizationMenu = () => {
           <div className="logoPosChanger">
             <PositionChanger elementToPos="logo" />
             <button className="setTextBtn" onClick={handleResetLogoPos}>
-              Reset
+              Reset Logo Position
             </button>
           </div>
         );
@@ -118,10 +118,17 @@ const CustomizationMenu = () => {
 
   return (
     <div className="customMenu">
+      {generatingImage && (
+        <div className="ai-loading-overlay">
+          <div className="ai-loading-spinner"></div>
+          <p>Generating your design...</p>
+        </div>
+      )}
       <div className="customMenuContainer">
         <div className="customTab">
           <Tab
             tab="Color"
+            isActive={activeTab === "colorChanger"}
             handleClick={() =>
               setActiveTab((prev) =>
                 prev === "colorChanger" ? "" : "colorChanger"
@@ -130,6 +137,7 @@ const CustomizationMenu = () => {
           />
           <Tab
             tab="File"
+            isActive={activeTab === "fileChanger"}
             handleClick={() => {
               setActiveTab((prev) =>
                 prev === "fileChanger" ? "" : "fileChanger"
@@ -144,6 +152,7 @@ const CustomizationMenu = () => {
           />
           <Tab
             tab="AI"
+            isActive={activeTab === "aiChanger"}
             handleClick={() => {
               setActiveTab((prev) => (prev === "aiChanger" ? "" : "aiChanger"));
               pageContext.generatedImage
@@ -156,6 +165,7 @@ const CustomizationMenu = () => {
           />
           <Tab
             tab="Position"
+            isActive={activeTab === "posChanger"}
             handleClick={() => {
               setActiveTab((prev) =>
                 prev === "posChanger" ? "" : "posChanger"
@@ -164,6 +174,7 @@ const CustomizationMenu = () => {
           />
           <Tab
             tab="Text"
+            isActive={activeTab === "textChanger"}
             handleClick={() => {
               setActiveTab((prev) =>
                 prev === "textChanger" ? "" : "textChanger"
