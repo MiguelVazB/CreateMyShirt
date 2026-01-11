@@ -1,4 +1,4 @@
-import { useEffect, useState, lazy, Suspense } from "react";
+import { useEffect, useState, useMemo, lazy, Suspense } from "react";
 const Canvas = lazy(() => import("./canvas"));
 const Customizer = lazy(() => import("./pages/Customizer"));
 const Home = lazy(() => import("./pages/Home"));
@@ -39,35 +39,48 @@ function App() {
     return () => controller.abort();
   }, []);
 
+  const contextValue = useMemo(() => ({
+    intro,
+    setIntroFunc: setIntro,
+    isFullTexture,
+    setIsFullTexture,
+    isLogoTexture,
+    setIsLogoTexture,
+    shirtColor,
+    setShirtColor,
+    logoTexture,
+    setLogoTexture,
+    currentFileUploaded,
+    setCurrentFileUploaded,
+    generatedImage,
+    setGeneratedImage,
+    textOverlay,
+    setTextOverlay,
+    isTextOverlay,
+    setIsTextOverlay,
+    textPos,
+    setTextPos,
+    logoPos,
+    setLogoPos,
+    textColor,
+    setTextColor,
+  }), [
+    intro,
+    isFullTexture,
+    isLogoTexture,
+    shirtColor,
+    logoTexture,
+    currentFileUploaded,
+    generatedImage,
+    textOverlay,
+    isTextOverlay,
+    textPos,
+    logoPos,
+    textColor,
+  ]);
+
   return (
-    <PageContext.Provider
-      value={{
-        intro: intro,
-        setIntroFunc: setIntro,
-        isFullTexture: isFullTexture,
-        setIsFullTexture: setIsFullTexture,
-        isLogoTexture: isLogoTexture,
-        setIsLogoTexture: setIsLogoTexture,
-        shirtColor: shirtColor,
-        setShirtColor: setShirtColor,
-        logoTexture: logoTexture,
-        setLogoTexture: setLogoTexture,
-        currentFileUploaded: currentFileUploaded,
-        setCurrentFileUploaded: setCurrentFileUploaded,
-        generatedImage: generatedImage,
-        setGeneratedImage: setGeneratedImage,
-        textOverlay: textOverlay,
-        setTextOverlay: setTextOverlay,
-        isTextOverlay: isTextOverlay,
-        setIsTextOverlay: setIsTextOverlay,
-        textPos: textPos,
-        setTextPos: setTextPos,
-        logoPos: logoPos,
-        setLogoPos: setLogoPos,
-        textColor: textColor,
-        setTextColor: setTextColor,
-      }}
-    >
+    <PageContext.Provider value={contextValue}>
       <main>
         <Home />
         <Suspense fallback={<div className="loadingCanvas"></div>}>
