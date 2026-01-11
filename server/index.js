@@ -8,9 +8,18 @@ dotenv.config();
 
 const app = express();
 
-// CORS configuration - restrict in production
+// CORS configuration - allow both development and production
+const allowedOrigins = [
+    'https://createmyshirt.netlify.app'
+];
 const corsOptions = {
-    origin: process.env.CLIENT_URL || '*',
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
