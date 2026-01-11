@@ -59,7 +59,7 @@ function App() {
       isFullTexture,
       isLogoTexture,
       isTextOverlay,
-      logoTexture: logoTexture.logo.startsWith('data:') ? logoTexture : null, // Only save base64 images
+      logoTexture: logoTexture.logo.startsWith('data:') ? logoTexture.logo : null, // Only save base64 images
       textOverlay: textOverlay.startsWith('data:') ? textOverlay : null,
       textPos,
       logoPos,
@@ -96,9 +96,15 @@ function App() {
     setIsFullTexture(design.isFullTexture);
     setIsLogoTexture(design.isLogoTexture);
     setIsTextOverlay(design.isTextOverlay);
-    if (design.logoTexture) setLogoTexture({ logo: design.logoTexture, logoName: 'Saved' });
-    if (design.textOverlay) setTextOverlay(design.textOverlay);
-    if (design.generatedImage) setGeneratedImage(design.generatedImage);
+    if (design.logoTexture && design.logoTexture.startsWith('data:')) {
+      setLogoTexture({ logo: design.logoTexture, logoName: 'Saved Design' });
+    }
+    if (design.textOverlay && design.textOverlay.startsWith('data:')) {
+      setTextOverlay(design.textOverlay);
+    }
+    if (design.generatedImage && design.generatedImage.startsWith('data:')) {
+      setGeneratedImage(design.generatedImage);
+    }
     setTextPos(design.textPos);
     setLogoPos(design.logoPos);
     setCurrentLoadedDesign(design);
