@@ -16,14 +16,6 @@ const Home = () => {
     <AnimatePresence>
       {pageContext.intro && (
         <motion.section className="home" {...slideAnimation("left")}>
-          <motion.header {...slideAnimation("down")}>
-            <img
-              src="./threejsLogo.png"
-              alt="threejs logo"
-              className="threejsLogo"
-            />
-          </motion.header>
-
           <motion.div
             className="homePageContentContainer"
             {...headContainerAnimation}
